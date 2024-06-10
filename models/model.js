@@ -8,6 +8,7 @@ class Usuario {
     }
 }
 
+// Definiendo las habitaciones
 class Room {
     constructor(room, adults, children) {
         this.room = room;
@@ -15,6 +16,10 @@ class Room {
         this.children = children;
     }
 }
+// FIN Definiendo las habitaciones
 
 module.exports = Usuario;
+
+// Definiendo las habitaciones
 module.exports = Room;
+// FIN Definiendo las habitaciones
