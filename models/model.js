@@ -1,32 +1,29 @@
-class Usuario {
-    constructor(id, nombre, email, rol, fechaCreacion) {
+class Booking {
+    constructor(id, room, hotel, name, phone, people, checkIn, checkOut, category, datePost, datePut) {
         this.id = id;
-        this.nombre = nombre;
-        this.email = email;
-        this.rol = rol;
-        this.fechaCreacion = fechaCreacion;
+        this.room = room;
+        this.hotel = hotel;
+        this.name = name;
+        this.phone = phone;
+        this.people = people;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.category = category;
+        this.datePost = datePost;
+        this.datePut = datePut;
     }
 }
 
-// Definiendo las habitaciones
-// ---------------------------
-class Room {
-    constructor(habitacion, hotel, adults, children, priceUsd, category) {
-        this.habitacion = habitacion;
+class Capacity {
+    constructor(room, hotel, adults, children, priceUsd, category, state) {
+        this.room = room;
         this.hotel = hotel;
         this.adults = adults;
         this.children = children;
         this.priceUsd = priceUsd;
         this.category = category;
+        this.state = state;
     }
 }
-// FIN Definiendo las habitaciones
-// -------------------------------
-
-module.exports = Usuario;
-
-// Definiendo las habitaciones
-// ---------------------------
-module.exports = Room;
-// FIN Definiendo las habitaciones
-// -------------------------------
+module.exports = Booking;
+module.exports = Capacity;

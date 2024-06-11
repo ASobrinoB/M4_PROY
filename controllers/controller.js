@@ -1,13 +1,15 @@
-const Usuario = require('../models/model');
+const Reserva = require('../models/model');
+const Room = require('../models/model');
+
 const moment = require('moment');
 const { v4: uuidv4 } = require('uuid');
  
-let users = [];
+let reservas = [];
  
-exports.createUser = async (req, res) => {
+exports.createBooking = async (req, res) => {
     const uniqueKey = uuidv4();
-    const { nombre, email, rol } = req.body;
-//  const newUser = new Usuario(users.length + 1, nombre, email, rol, moment())
+
+    const { hotel, habitacion, nombre, phone, people, checkIn, checkOut, category } = req.body;
     const newUser = new Usuario(uniqueKey, nombre, email, rol, moment())
  
     users.push(newUser);
