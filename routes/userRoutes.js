@@ -3,11 +3,11 @@ const usuarioController = require('../controllers/controller');
 
 const router = express.Router();
 
-router.post("/reservas", usuarioController.createBooking);
-router.get("/reservas/:reservation", usuarioController.getBookingByReservation);
-router.put("/reservas/:reservation", usuarioController.updateBookingByReservation);
-router.delete("/reservas/:reservation", usuarioController.deleteBookingByReservation);
-router.get("/reservas/?checkIn=", usuarioController.getBookingsByCkeckIn);
+router.post('/reservas', usuarioController.createBooking);
+router.get('/reservas/:checkIn', usuarioController.getBookingsByDate);
+router.get('/reservas/:reservation', usuarioController.getBookingByReservation);
+router.put('/reservas/:reservation', usuarioController.updateBookingByReservation);
+router.delete('/reservas/:reservation', usuarioController.deleteBookingByReservation);
 
 //router.get("/reservas/?hotel=", usuarioController.getBookingsByHotel);
 //router.get("/reservas/?checkIn=&checkOut=", usuarioController.getBookingsByPeriod);

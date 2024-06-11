@@ -1,4 +1,5 @@
-const Booking = require('../models/model');
+const Booking = require('../models/modelBooking');
+const Capacity = require('../models/modelCapacity');
 
 const moment = require('moment');
 const { v4: uuidv4 } = require('uuid');
@@ -11,27 +12,28 @@ exports.createBooking = async (req, res) => {
     const { paid, room, hotel, name, phone, adults, children, checkIn, checkOut, category } = req.body;
     const newBooking = new Booking(reservation, paid, room, hotel, name, phone, adults, children, checkIn, checkOut, category, moment().format('YYYYMMDD'), "")
  
-    console.log (newBooking)
     arrBooking.push(newBooking);
  
     res.json({
         msg: "Reserva creada con éxito",
-        data: newBooking
+        data: newBooking,
     });
-};
+}
 
-exports.getBookingByReservation = async (req, res) => {
-    const reservation = req.params.reservation;
-    const booking = arrBooking.find(booking => booking.reservation === reservation);
-
-    if (!booking) {
-        return res.status(404).json({ msg: "Reserva no encontrada" })
-    }
+exports.getBookingsByDate = async (req, res) => {
+    const checkIn = req.params.checkIn;
  
-    return res.json({
-        msg: "Reserva encontrada con éxito",
-        data: booking
-    })
+    if (checkIn){
+        const bookingFiltered = arrBooking.filter(booking => booking.checkIn === checkIn);
+
+        if (bookingFiltered.length === 0) {
+            return res.status(404).json({ msg: "No se encontraron reservas para la fecha" });
+        }
+        return res.json({
+            msg: "Reservas encontradas para la fecha",
+            data: bookingFiltered,
+        })
+    }
 }
 
 exports.updateBookingByReservation = async (req, res) => {
@@ -64,22 +66,4 @@ exports.deleteBookingByReservation = async (req, res) => {
     return res.json({
         msg: "Reserva eliminada con éxito",
     })
-}
-
-exports.getBookingsByCkeckIn = async (req, res) => {
-    const { fecha_inicio, fecha_fin } = req.query;
- 
-    if (fecha_inicio && fecha_fin){
-        const startDate = moment (fecha_incio);
-        const endDate = moment (fecha_fin);
-
-        const bookingFiltered = arrBooking.filter(booking => booking.checkIn.isBetween (startDate, endDate) === true);
-        if (bookingFiltered.length === 0) {
-            return res.status(404).json({ msg: "No se encontraron Reservas" });
-        }
-        return res.json({
-            msg: "Reservas encontradas",
-            data: bookingFiltered
-        })
-    }
 }
