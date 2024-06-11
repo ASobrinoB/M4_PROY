@@ -11,12 +11,13 @@ class Usuario {
 // Definiendo las habitaciones
 // ---------------------------
 class Room {
-    constructor(room, adults, children, checkIn, checkOut) {
-        this.room = room;
+    constructor(habitacion, hotel, adults, children, priceUsd, category) {
+        this.habitacion = habitacion;
+        this.hotel = hotel;
         this.adults = adults;
         this.children = children;
-        this.checkIn = checkIn;
-        this.checkOut = checkOut;
+        this.priceUsd = priceUsd;
+        this.category = category;
     }
 }
 // FIN Definiendo las habitaciones

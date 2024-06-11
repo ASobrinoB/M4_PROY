@@ -52,7 +52,7 @@ exports.getUsers = async (req, res) => {
     }
 }
 
-exports.getUsersById = async (req, res) => {
+exports.getUserById = async (req, res) => {
     const userId = req.params.id;
     const user = users.find(user => user.id === userId);
 
@@ -66,7 +66,7 @@ exports.getUsersById = async (req, res) => {
     })
 }
 
-exports.updateUsersById = async (req, res) => {
+exports.updateUserById = async (req, res) => {
     const userId = req.params.id;
     const userIndex = users.findIndex(user => user.id === userId);
 
@@ -82,7 +82,7 @@ exports.updateUsersById = async (req, res) => {
     })
 }
 
-exports.deleteUsersById = async (req, res) => {
+exports.deleteUserById = async (req, res) => {
     const userId = req.params.id;
     const userIndex = users.findIndex(user => user.id === userId);
 
