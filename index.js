@@ -1,17 +1,16 @@
-require ('dotenv').config();
+require('dotenv').config();
+const port = process.env.PORT || 3000;
 
 const express = require('express');
 const userRoutes = require('./routes/userRoutes');
 const app = express();
-const port = process.env.PORT || 3000;
-const Capacity = require('./models/modelCapacity');
-const Booking = require('./models/modelBooking');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api', userRoutes);
+app.use('/api', userRoutes)
 
 const arrCapacity = [];
+const Capacity = require('./models/modelCapacity');
 
 arrCapacity.push (new Capacity (101,  'Enjoy',  2, 2, 80,  'Standard', 'Locked'));
 arrCapacity.push (new Capacity (102,  'Enjoy',  4, 2, 140, 'Gold',     'Available'));
@@ -270,10 +269,6 @@ arrCapacity.push (new Capacity (2101, 'Dreams', 8, 4, 400, 'Safiro',   'Availabl
 arrCapacity.push (new Capacity (2102, 'Dreams', 8, 4, 400, 'Safiro',   'Available'));
 arrCapacity.push (new Capacity (2103, 'Dreams', 8, 4, 400, 'Safiro',   'Available'));
 arrCapacity.push (new Capacity (2104, 'Dreams', 8, 4, 400, 'Safiro',   'Available'));
-
-//arrCapacity.forEach ((valor) => console.log(valor));
-console.log (arrCapacity);
-console.log ('Capacidad -> ' + arrCapacity.length + ' Habitaciones');
 
 module.exports = arrCapacity;
 
