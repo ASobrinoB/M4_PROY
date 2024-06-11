@@ -4,16 +4,16 @@ const usuarioController = require('../controllers/controller');
 const router = express.Router();
 
 router.post("/reservas", usuarioController.createBooking);
-router.put("/reservas/:id", usuarioController.updateBookingById);
-router.delete("/reservas/:id", usuarioController.deleteBookingById);
-
+router.get("/reservas/:reservation", usuarioController.getBookingByReservation);
+router.put("/reservas/:reservation", usuarioController.updateBookingByReservation);
+router.delete("/reservas/:reservation", usuarioController.deleteBookingByReservation);
 router.get("/reservas/?checkIn=", usuarioController.getBookingsByCkeckIn);
-router.get("/reservas/:id", usuarioController.getBookingById);
-router.get("/reservas/?hotel=", usuarioController.getBookingsByHotel);
-router.get("/reservas/?checkIn=&checkOut=", usuarioController.getBookingsByPeriod);
-router.get("/reservas/?category=", usuarioController.getBookingsByCategory);
-router.get("/reservas/?pago=", usuarioController.getBookingsByPaid);
-router.get("/reservas/?guest=", usuarioController.getBookingsByGuest);
+
+//router.get("/reservas/?hotel=", usuarioController.getBookingsByHotel);
+//router.get("/reservas/?checkIn=&checkOut=", usuarioController.getBookingsByPeriod);
+//router.get("/reservas/?category=", usuarioController.getBookingsByCategory);
+//router.get("/reservas/?paid=", usuarioController.getBookingsByPaid);
+//router.get("/reservas/?guest=", usuarioController.getBookingsByGuest);
 
 module.exports = router
 

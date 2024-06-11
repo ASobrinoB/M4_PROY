@@ -1,11 +1,13 @@
 class Booking {
-    constructor(id, room, hotel, name, phone, people, checkIn, checkOut, category, datePost, datePut) {
-        this.id = id;
+    constructor(reservation, paid, room, hotel, name, phone, adults, children, checkIn, checkOut, category, datePost, datePut) {
+        this.reservation = reservation;
+        this.paid = paid;
         this.room = room;
         this.hotel = hotel;
         this.name = name;
         this.phone = phone;
-        this.people = people;
+        this.adults = adults;
+        this.children = children;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.category = category;
@@ -15,14 +17,14 @@ class Booking {
 }
 
 class Capacity {
-    constructor(room, hotel, adults, children, priceUsd, category, state) {
+    constructor(room, hotel, adults, children, priceUsd, category, roomState) {
         this.room = room;
         this.hotel = hotel;
         this.adults = adults;
         this.children = children;
         this.priceUsd = priceUsd;
         this.category = category;
-        this.state = state;
+        this.roomState = roomState;
     }
 }
 module.exports = Booking;

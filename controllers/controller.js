@@ -1,101 +1,85 @@
-const Reserva = require('../models/model');
-const Room = require('../models/model');
+const Booking = require('../models/model');
+const Capacity = require('../models/model');
 
 const moment = require('moment');
 const { v4: uuidv4 } = require('uuid');
  
-let reservas = [];
+let arrBooking = [];
  
 exports.createBooking = async (req, res) => {
-    const uniqueKey = uuidv4();
+    const reservation = uuidv4();
 
-    const { hotel, habitacion, nombre, phone, people, checkIn, checkOut, category } = req.body;
-    const newUser = new Usuario(uniqueKey, nombre, email, rol, moment())
+    const { paid, room, hotel, name, phone, adults, children, checkIn, checkOut, category } = req.body;
+    const newBooking = new Booking(reservation, paid, room, hotel, name, phone, adults, children, checkIn, checkOut, category, moment().format('YYYYMMDD'), "")
  
-    users.push(newUser);
+    arrBooking.push(newBooking);
  
     res.json({
-        msg: "Usuario creado con éxito.",
-        data: newUser
+        msg: "Reserva creada con éxito",
+        data: newBooking
     });
 };
+
+exports.getBookingByReservation = async (req, res) => {
+    const reservation = req.params.reservation;
+    const booking = arrBooking.find(booking => booking.reservation === reservation);
+
+    if (!booking) {
+        return res.status(404).json({ msg: "Reserva no encontrada" })
+    }
  
-exports.getUsers = async (req, res) => {
-    const { rol, fecha_inicio, fecha_fin } = req.query;
+    return res.json({
+        msg: "Reserva encontrada con éxito",
+        data: booking
+    })
+}
+
+exports.updateBookingByReservation = async (req, res) => {
+    const reservation = req.params.reservation;
+    const bookingIndex = arrBooking.findIndex(booking => booking.reservation === reservation);
+
+    if (bookingIndex === -1){
+        return res.status(404).json({ msg: "Reserva no encontrada" })
+    }
+
+    arrBooking[bookingIndex] = { ...arrBooking[bookingIndex], ...req.body} // spread
+    arrBooking[bookingIndex].datePut = moment().format('YYYYMMDD')
+
+    return res.json({
+        msg: "Reserva modificada con éxito",
+        data: arrBooking[bookingIndex]
+    })
+}
+
+exports.deleteBookingByReservation = async (req, res) => {
+    const reservation = req.params.reservation;
+    const bookingIndex = arrBooking.findIndex(booking => booking.reservation === reservation);
+
+    if (bookingIndex === -1){
+        return res.status(404).json({ msg: "Reserva no encontrada" })
+    }
+
+    arrBooking.splice (bookingIndex,1)
+
+    return res.json({
+        msg: "Reserva eliminada con éxito",
+    })
+}
+
+exports.getBookingsByCkeckIn = async (req, res) => {
+    const { fecha_inicio, fecha_fin } = req.query;
  
-    if (rol) {
-        const usersFiltered = users.filter(user => user.rol === rol);
-        if (usersFiltered.length === 0) {
-            return res.status(404).json({ msg: 'No se encontraron usuarios' });
-        }
- 
-        return res.json({
-            msg: "Usuarios",
-            data: usersFiltered
-        })
-    } else if (fecha_inicio && fecha_fin){
+    if (fecha_inicio && fecha_fin){
         const startDate = moment (fecha_incio);
         const endDate = moment (fecha_fin);
 
-        const usersFiltered = users.filter(user => user.fechaCreacion.isBetween (startDate, endDate) === true);
-        if (usersFiltered.length === 0) {
-            return res.status(404).json({ msg: 'No se encontraron usuarios' });
+        const bookingFiltered = arrBooking.filter(booking => booking.checkIn.isBetween (startDate, endDate) === true);
+        if (bookingFiltered.length === 0) {
+            return res.status(404).json({ msg: "No se encontraron Reservas" });
         }
         return res.json({
-            msg: "Usuarios",
-            data: usersFiltered
+            msg: "Reservas encontradas",
+            data: bookingFiltered
         })
     }
-    else {
-        return res.json({
-            msg: 'Usuarios',
-            data: users
-        })
-    }
-}
-
-exports.getUserById = async (req, res) => {
-    const userId = req.params.id;
-    const user = users.find(user => user.id === userId);
-
-    if (!user) {
-        return res.status(404).json({ msg: "Usuario no encontrado." })
-    }
- 
-    return res.json({
-        msg: 'Usuario obtenido con éxito.',
-        data: user
-    })
-}
-
-exports.updateUserById = async (req, res) => {
-    const userId = req.params.id;
-    const userIndex = users.findIndex(user => user.id === userId);
-
-    if (userIndex === -1){
-        return res.status(404).json({ msg: "Usuario no encontrado." })
-    }
-
-    users[userIndex] = { ...users[userIndex], ...req.body} // spread
-
-    return res.json({
-        msg: 'Usuario modificado con éxito.',
-        data: users[userIndex]
-    })
-}
-
-exports.deleteUserById = async (req, res) => {
-    const userId = req.params.id;
-    const userIndex = users.findIndex(user => user.id === userId);
-
-    if (userIndex === -1){
-        return res.status(404).json({ msg: "Usuario no encontrado." })
-    }
-
-    users.splice (userIndex,1)
-
-    return res.json({
-        msg: 'Usuario eliminado con éxito.',
-    })
-
 }
