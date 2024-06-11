@@ -9,17 +9,23 @@ class Usuario {
 }
 
 // Definiendo las habitaciones
+// ---------------------------
 class Room {
-    constructor(room, adults, children) {
+    constructor(room, adults, children, checkIn, checkOut) {
         this.room = room;
         this.adults = adults;
         this.children = children;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
     }
 }
 // FIN Definiendo las habitaciones
+// -------------------------------
 
 module.exports = Usuario;
 
 // Definiendo las habitaciones
+// ---------------------------
 module.exports = Room;
 // FIN Definiendo las habitaciones
+// -------------------------------

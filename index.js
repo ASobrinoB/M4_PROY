@@ -1,273 +1,277 @@
-require ('dotenv').config(); // permite obtener variables definidas en .env
+require ('dotenv').config();
+
 const express = require('express');
 const userRoutes = require('./routes/userRoutes');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(express.json()) // middleware para procesar peticiones tipo JSON
-app.use(express.urlencoded({ extended: true }))
-app.use('/api', userRoutes)
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use('/api', userRoutes);
 
-// Definiendo las habitaciones
-const capacity = []
+// Definiendo las  Habitaciones
+// ---------------------------
+const capacity = [];
 const Room = require('./models/model');
-capacity.push (new Room ("Miramar-101", 2, 2))
-capacity.push (new Room ("Miramar-102", 4, 1))
-capacity.push (new Room ("Miramar-103", 6, 2))
-capacity.push (new Room ("Miramar-104", 2, 1))
-capacity.push (new Room ("Miramar-105", 4, 2))
-capacity.push (new Room ("Miramar-106", 6, 1))
-capacity.push (new Room ("Miramar-107", 2, 2))
-capacity.push (new Room ("Miramar-108", 4, 1))
-capacity.push (new Room ("Miramar-109", 6, 2))
-capacity.push (new Room ("Miramar-110", 2, 1))
-capacity.push (new Room ("Miramar-201", 2, 2))
-capacity.push (new Room ("Miramar-202", 4, 1))
-capacity.push (new Room ("Miramar-203", 6, 2))
-capacity.push (new Room ("Miramar-204", 2, 1))
-capacity.push (new Room ("Miramar-205", 4, 2))
-capacity.push (new Room ("Miramar-206", 6, 1))
-capacity.push (new Room ("Miramar-207", 2, 2))
-capacity.push (new Room ("Miramar-208", 4, 1))
-capacity.push (new Room ("Miramar-209", 6, 2))
-capacity.push (new Room ("Miramar-210", 2, 1))
-capacity.push (new Room ("Miramar-301", 2, 2))
-capacity.push (new Room ("Miramar-302", 4, 1))
-capacity.push (new Room ("Miramar-303", 6, 2))
-capacity.push (new Room ("Miramar-304", 2, 1))
-capacity.push (new Room ("Miramar-305", 4, 2))
-capacity.push (new Room ("Miramar-306", 6, 1))
-capacity.push (new Room ("Miramar-307", 2, 2))
-capacity.push (new Room ("Miramar-308", 4, 1))
-capacity.push (new Room ("Miramar-309", 6, 2))
-capacity.push (new Room ("Miramar-310", 2, 1))
-capacity.push (new Room ("Miramar-401", 2, 2))
-capacity.push (new Room ("Miramar-402", 4, 1))
-capacity.push (new Room ("Miramar-403", 6, 2))
-capacity.push (new Room ("Miramar-404", 2, 1))
-capacity.push (new Room ("Miramar-405", 4, 2))
-capacity.push (new Room ("Miramar-406", 6, 1))
-capacity.push (new Room ("Miramar-407", 2, 2))
-capacity.push (new Room ("Miramar-408", 4, 1))
-capacity.push (new Room ("Miramar-409", 6, 2))
-capacity.push (new Room ("Miramar-410", 2, 1))
-capacity.push (new Room ("Miramar-501", 2, 2))
-capacity.push (new Room ("Miramar-502", 4, 1))
-capacity.push (new Room ("Miramar-503", 6, 2))
-capacity.push (new Room ("Miramar-504", 2, 1))
-capacity.push (new Room ("Miramar-505", 4, 2))
-capacity.push (new Room ("Miramar-506", 6, 1))
-capacity.push (new Room ("Miramar-507", 2, 2))
-capacity.push (new Room ("Miramar-508", 4, 1))
-capacity.push (new Room ("Miramar-509", 6, 2))
-capacity.push (new Room ("Miramar-510", 2, 1))
-capacity.push (new Room ("Enjoy-101", 2, 2))
-capacity.push (new Room ("Enjoy-102", 4, 4))
-capacity.push (new Room ("Enjoy-103", 6, 2))
-capacity.push (new Room ("Enjoy-104", 2, 4))
-capacity.push (new Room ("Enjoy-105", 4, 2))
-capacity.push (new Room ("Enjoy-106", 6, 4))
-capacity.push (new Room ("Enjoy-107", 2, 2))
-capacity.push (new Room ("Enjoy-108", 4, 4))
-capacity.push (new Room ("Enjoy-109", 6, 2))
-capacity.push (new Room ("Enjoy-110", 2, 4))
-capacity.push (new Room ("Enjoy-201", 2, 2))
-capacity.push (new Room ("Enjoy-202", 4, 4))
-capacity.push (new Room ("Enjoy-203", 6, 2))
-capacity.push (new Room ("Enjoy-204", 2, 4))
-capacity.push (new Room ("Enjoy-205", 4, 2))
-capacity.push (new Room ("Enjoy-206", 6, 4))
-capacity.push (new Room ("Enjoy-207", 2, 2))
-capacity.push (new Room ("Enjoy-208", 4, 4))
-capacity.push (new Room ("Enjoy-209", 6, 2))
-capacity.push (new Room ("Enjoy-210", 2, 4))
-capacity.push (new Room ("Enjoy-301", 2, 2))
-capacity.push (new Room ("Enjoy-302", 4, 4))
-capacity.push (new Room ("Enjoy-303", 6, 2))
-capacity.push (new Room ("Enjoy-304", 2, 4))
-capacity.push (new Room ("Enjoy-305", 4, 2))
-capacity.push (new Room ("Enjoy-306", 6, 4))
-capacity.push (new Room ("Enjoy-307", 2, 2))
-capacity.push (new Room ("Enjoy-308", 4, 4))
-capacity.push (new Room ("Enjoy-309", 6, 2))
-capacity.push (new Room ("Enjoy-310", 2, 4))
-capacity.push (new Room ("Enjoy-401", 2, 2))
-capacity.push (new Room ("Enjoy-402", 4, 4))
-capacity.push (new Room ("Enjoy-403", 6, 2))
-capacity.push (new Room ("Enjoy-404", 2, 4))
-capacity.push (new Room ("Enjoy-405", 4, 2))
-capacity.push (new Room ("Enjoy-406", 6, 4))
-capacity.push (new Room ("Enjoy-407", 2, 2))
-capacity.push (new Room ("Enjoy-408", 4, 4))
-capacity.push (new Room ("Enjoy-409", 6, 2))
-capacity.push (new Room ("Enjoy-410", 2, 4))
-capacity.push (new Room ("Enjoy-501", 2, 2))
-capacity.push (new Room ("Enjoy-502", 4, 4))
-capacity.push (new Room ("Enjoy-503", 6, 2))
-capacity.push (new Room ("Enjoy-504", 2, 4))
-capacity.push (new Room ("Enjoy-505", 4, 2))
-capacity.push (new Room ("Enjoy-506", 6, 4))
-capacity.push (new Room ("Enjoy-507", 2, 2))
-capacity.push (new Room ("Enjoy-508", 4, 4))
-capacity.push (new Room ("Enjoy-509", 6, 2))
-capacity.push (new Room ("Enjoy-510", 2, 4))
-capacity.push (new Room ("Enjoy-601", 2, 2))
-capacity.push (new Room ("Enjoy-602", 4, 4))
-capacity.push (new Room ("Enjoy-603", 6, 2))
-capacity.push (new Room ("Enjoy-604", 2, 4))
-capacity.push (new Room ("Enjoy-605", 4, 2))
-capacity.push (new Room ("Enjoy-606", 6, 4))
-capacity.push (new Room ("Enjoy-607", 2, 2))
-capacity.push (new Room ("Enjoy-608", 4, 4))
-capacity.push (new Room ("Enjoy-609", 6, 2))
-capacity.push (new Room ("Enjoy-610", 2, 4))
-capacity.push (new Room ("Enjoy-701", 2, 2))
-capacity.push (new Room ("Enjoy-702", 4, 4))
-capacity.push (new Room ("Enjoy-703", 6, 2))
-capacity.push (new Room ("Enjoy-704", 2, 4))
-capacity.push (new Room ("Enjoy-705", 4, 2))
-capacity.push (new Room ("Enjoy-706", 6, 4))
-capacity.push (new Room ("Enjoy-707", 2, 2))
-capacity.push (new Room ("Enjoy-708", 4, 4))
-capacity.push (new Room ("Enjoy-709", 6, 2))
-capacity.push (new Room ("Enjoy-710", 2, 4))
-capacity.push (new Room ("Enjoy-801", 2, 2))
-capacity.push (new Room ("Enjoy-802", 4, 4))
-capacity.push (new Room ("Enjoy-803", 6, 2))
-capacity.push (new Room ("Enjoy-804", 2, 4))
-capacity.push (new Room ("Enjoy-805", 4, 2))
-capacity.push (new Room ("Enjoy-806", 6, 4))
-capacity.push (new Room ("Enjoy-807", 2, 2))
-capacity.push (new Room ("Enjoy-808", 4, 4))
-capacity.push (new Room ("Enjoy-809", 6, 2))
-capacity.push (new Room ("Enjoy-810", 2, 4))
-capacity.push (new Room ("Enjoy-901", 2, 2))
-capacity.push (new Room ("Enjoy-902", 4, 4))
-capacity.push (new Room ("Enjoy-903", 6, 2))
-capacity.push (new Room ("Enjoy-904", 2, 4))
-capacity.push (new Room ("Enjoy-905", 4, 2))
-capacity.push (new Room ("Enjoy-906", 6, 4))
-capacity.push (new Room ("Enjoy-907", 2, 2))
-capacity.push (new Room ("Enjoy-908", 4, 4))
-capacity.push (new Room ("Enjoy-909", 6, 2))
-capacity.push (new Room ("Enjoy-910", 2, 4))
-capacity.push (new Room ("Enjoy-1001", 2, 2))
-capacity.push (new Room ("Enjoy-1002", 4, 4))
-capacity.push (new Room ("Enjoy-1003", 6, 2))
-capacity.push (new Room ("Enjoy-1004", 2, 4))
-capacity.push (new Room ("Enjoy-1005", 4, 2))
-capacity.push (new Room ("Enjoy-1006", 6, 4))
-capacity.push (new Room ("Enjoy-1007", 2, 2))
-capacity.push (new Room ("Enjoy-1008", 4, 4))
-capacity.push (new Room ("Enjoy-1009", 6, 2))
-capacity.push (new Room ("Enjoy-1010", 2, 4))
-capacity.push (new Room ("Enjoy-1101", 2, 2))
-capacity.push (new Room ("Enjoy-1102", 4, 4))
-capacity.push (new Room ("Enjoy-1103", 6, 2))
-capacity.push (new Room ("Enjoy-1104", 2, 4))
-capacity.push (new Room ("Enjoy-1105", 4, 2))
-capacity.push (new Room ("Enjoy-1106", 6, 4))
-capacity.push (new Room ("Enjoy-1107", 2, 2))
-capacity.push (new Room ("Enjoy-1108", 4, 4))
-capacity.push (new Room ("Enjoy-1109", 6, 2))
-capacity.push (new Room ("Enjoy-1110", 2, 4))
-capacity.push (new Room ("Enjoy-1201", 2, 2))
-capacity.push (new Room ("Enjoy-1202", 4, 4))
-capacity.push (new Room ("Enjoy-1203", 6, 2))
-capacity.push (new Room ("Enjoy-1204", 2, 4))
-capacity.push (new Room ("Enjoy-1205", 4, 2))
-capacity.push (new Room ("Enjoy-1206", 6, 4))
-capacity.push (new Room ("Enjoy-1207", 2, 2))
-capacity.push (new Room ("Enjoy-1208", 4, 4))
-capacity.push (new Room ("Enjoy-1209", 6, 2))
-capacity.push (new Room ("Enjoy-1210", 2, 4))
-capacity.push (new Room ("Enjoy-1301", 2, 2))
-capacity.push (new Room ("Enjoy-1302", 4, 4))
-capacity.push (new Room ("Enjoy-1303", 6, 2))
-capacity.push (new Room ("Enjoy-1304", 2, 4))
-capacity.push (new Room ("Enjoy-1305", 4, 2))
-capacity.push (new Room ("Enjoy-1306", 6, 4))
-capacity.push (new Room ("Enjoy-1307", 2, 2))
-capacity.push (new Room ("Enjoy-1308", 4, 4))
-capacity.push (new Room ("Enjoy-1309", 6, 2))
-capacity.push (new Room ("Enjoy-1310", 2, 4))
-capacity.push (new Room ("Enjoy-1401", 2, 2))
-capacity.push (new Room ("Enjoy-1402", 4, 4))
-capacity.push (new Room ("Enjoy-1403", 6, 2))
-capacity.push (new Room ("Enjoy-1404", 2, 4))
-capacity.push (new Room ("Enjoy-1405", 4, 2))
-capacity.push (new Room ("Enjoy-1406", 6, 4))
-capacity.push (new Room ("Enjoy-1407", 2, 2))
-capacity.push (new Room ("Enjoy-1408", 4, 4))
-capacity.push (new Room ("Enjoy-1409", 6, 2))
-capacity.push (new Room ("Enjoy-1410", 2, 4))
-capacity.push (new Room ("Enjoy-1501", 2, 2))
-capacity.push (new Room ("Enjoy-1502", 4, 4))
-capacity.push (new Room ("Enjoy-1503", 6, 2))
-capacity.push (new Room ("Enjoy-1504", 2, 4))
-capacity.push (new Room ("Enjoy-1505", 4, 2))
-capacity.push (new Room ("Enjoy-1506", 6, 4))
-capacity.push (new Room ("Enjoy-1507", 2, 2))
-capacity.push (new Room ("Enjoy-1508", 4, 4))
-capacity.push (new Room ("Enjoy-1509", 6, 2))
-capacity.push (new Room ("Enjoy-1510", 2, 4))
-capacity.push (new Room ("Enjoy-1601", 2, 2))
-capacity.push (new Room ("Enjoy-1602", 4, 4))
-capacity.push (new Room ("Enjoy-1603", 6, 2))
-capacity.push (new Room ("Enjoy-1604", 2, 4))
-capacity.push (new Room ("Enjoy-1605", 4, 2))
-capacity.push (new Room ("Enjoy-1606", 6, 4))
-capacity.push (new Room ("Enjoy-1607", 2, 2))
-capacity.push (new Room ("Enjoy-1608", 4, 4))
-capacity.push (new Room ("Enjoy-1609", 6, 2))
-capacity.push (new Room ("Enjoy-1610", 2, 4))
-capacity.push (new Room ("Enjoy-1701", 2, 2))
-capacity.push (new Room ("Enjoy-1702", 4, 4))
-capacity.push (new Room ("Enjoy-1703", 6, 2))
-capacity.push (new Room ("Enjoy-1704", 2, 4))
-capacity.push (new Room ("Enjoy-1705", 4, 2))
-capacity.push (new Room ("Enjoy-1706", 6, 4))
-capacity.push (new Room ("Enjoy-1707", 2, 2))
-capacity.push (new Room ("Enjoy-1708", 4, 4))
-capacity.push (new Room ("Enjoy-1709", 6, 2))
-capacity.push (new Room ("Enjoy-1710", 2, 4))
-capacity.push (new Room ("Enjoy-1801", 2, 2))
-capacity.push (new Room ("Enjoy-1802", 4, 4))
-capacity.push (new Room ("Enjoy-1803", 6, 2))
-capacity.push (new Room ("Enjoy-1804", 2, 4))
-capacity.push (new Room ("Enjoy-1805", 4, 2))
-capacity.push (new Room ("Enjoy-1806", 6, 4))
-capacity.push (new Room ("Enjoy-1807", 2, 2))
-capacity.push (new Room ("Enjoy-1808", 4, 4))
-capacity.push (new Room ("Enjoy-1809", 6, 2))
-capacity.push (new Room ("Enjoy-1810", 2, 4))
-capacity.push (new Room ("Enjoy-1901", 2, 2))
-capacity.push (new Room ("Enjoy-1902", 4, 4))
-capacity.push (new Room ("Enjoy-1903", 6, 2))
-capacity.push (new Room ("Enjoy-1904", 2, 4))
-capacity.push (new Room ("Enjoy-1905", 4, 2))
-capacity.push (new Room ("Enjoy-1906", 6, 4))
-capacity.push (new Room ("Enjoy-1907", 2, 2))
-capacity.push (new Room ("Enjoy-1908", 4, 4))
-capacity.push (new Room ("Enjoy-1909", 6, 2))
-capacity.push (new Room ("Enjoy-1910", 2, 4))
-capacity.push (new Room ("Enjoy-2001", 2, 2))
-capacity.push (new Room ("Enjoy-2002", 4, 4))
-capacity.push (new Room ("Enjoy-2003", 6, 2))
-capacity.push (new Room ("Enjoy-2004", 2, 4))
-capacity.push (new Room ("Enjoy-2005", 4, 2))
-capacity.push (new Room ("Enjoy-2006", 6, 4))
-capacity.push (new Room ("Enjoy-2007", 2, 2))
-capacity.push (new Room ("Enjoy-2008", 4, 4))
-capacity.push (new Room ("Enjoy-2009", 6, 2))
-capacity.push (new Room ("Enjoy-2010", 2, 4))
-console.log (capacity.length)
-capacity.forEach ((valor) => console.log(valor))
+capacity.push (new Room ("Hotel Miramar Hab 101", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 102", 4, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 103", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 104", 2, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 105", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 106", 6, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 107", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 108", 4, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 109", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 110", 2, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 201", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 202", 4, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 203", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 204", 2, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 205", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 206", 6, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 207", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 208", 4, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 209", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 210", 2, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 301", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 302", 4, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 303", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 304", 2, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 305", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 306", 6, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 307", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 308", 4, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 309", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 310", 2, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 401", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 402", 4, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 403", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 404", 2, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 405", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 406", 6, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 407", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 408", 4, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 409", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 410", 2, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 501", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 502", 4, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 503", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 504", 2, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 505", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 506", 6, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 507", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 508", 4, 1, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 509", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Miramar Hab 510", 2, 1, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 101", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 102", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 103", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 104", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 105", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 106", 6, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 107", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 108", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 109", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 110", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 201", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 202", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 203", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 204", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 205", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 206", 6, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 207", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 208", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 209", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 210", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 301", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 302", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 303", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 304", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 305", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 306", 6, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 307", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 308", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 309", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 310", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 401", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 402", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 403", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 404", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 405", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 406", 6, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 407", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 408", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 409", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 410", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 501", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 502", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 503", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 504", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 505", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 506", 6, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 507", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 508", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 509", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 510", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 601", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 602", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 603", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 604", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 605", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 606", 6, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 607", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 608", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 609", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 610", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 701", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 702", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 703", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 704", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 705", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 706", 6, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 707", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 708", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 709", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 710", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 801", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 802", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 803", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 804", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 805", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 806", 6, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 807", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 808", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 809", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 810", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 901", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 902", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 903", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 904", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 905", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 906", 6, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 907", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 908", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 909", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 910", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1001", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1002", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1003", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1004", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1005", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1006", 6, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1007", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1008", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1009", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1010", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1101", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1102", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1103", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1104", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1105", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1106", 6, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1107", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1108", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1109", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1110", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1201", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1202", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1203", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1204", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1205", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1206", 6, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1207", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1208", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1209", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1210", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1301", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1302", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1303", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1304", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1305", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1306", 6, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1307", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1308", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1309", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1310", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1401", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1402", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1403", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1404", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1405", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1406", 6, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1407", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1408", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1409", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1410", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1501", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1502", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1503", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1504", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1505", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1506", 6, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1507", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1508", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1509", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1510", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1601", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1602", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1603", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1604", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1605", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1606", 6, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1607", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1608", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1609", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1610", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1701", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1702", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1703", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1704", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1705", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1706", 6, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1707", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1708", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1709", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1710", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1801", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1802", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1803", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1804", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1805", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1806", 6, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1807", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1808", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1809", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1810", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1901", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1902", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1903", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1904", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1905", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1906", 6, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1907", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1908", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1909", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 1910", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 2001", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 2002", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 2003", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 2004", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 2005", 4, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 2006", 6, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 2007", 2, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 2008", 4, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 2009", 6, 2, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 2010", 2, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 2101", 10, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 2102", 10, 4, "", ""));
+capacity.push (new Room ("Hotel Casino Enjoy Hab 2103", 10, 4, "", ""));
+//capacity.forEach ((valor) => console.log(valor));
+console.log ('Total de  Habitaciones -> ' + capacity.length);
 module.exports = capacity
-// FIN Definiendo las habitaciones
+// FIN Definiendo las  Habitaciones
+// -------------------------------
 
-app.listen(port, () => {
-    console.log('Servidor iniciado en el puerto ' + port);
-})
+app.listen(port, () => console.log('Open port -> ' + port));
 
-// http:localhost:3000/api/usuario
+// http:localhost:3001/api/usuario
