@@ -1,5 +1,4 @@
 const Booking = require('../models/model');
-const Capacity = require('../models/model');
 
 const moment = require('moment');
 const { v4: uuidv4 } = require('uuid');
@@ -12,6 +11,7 @@ exports.createBooking = async (req, res) => {
     const { paid, room, hotel, name, phone, adults, children, checkIn, checkOut, category } = req.body;
     const newBooking = new Booking(reservation, paid, room, hotel, name, phone, adults, children, checkIn, checkOut, category, moment().format('YYYYMMDD'), "")
  
+    console.log (newBooking)
     arrBooking.push(newBooking);
  
     res.json({

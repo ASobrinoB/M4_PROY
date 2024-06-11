@@ -1,3 +1,15 @@
+class Capacity {
+    constructor(room, hotel, adults, children, priceUsd, category, roomState) {
+        this.room = room;
+        this.hotel = hotel;
+        this.adults = adults;
+        this.children = children;
+        this.priceUsd = priceUsd;
+        this.category = category;
+        this.roomState = roomState;
+    }
+}
+
 class Booking {
     constructor(reservation, paid, room, hotel, name, phone, adults, children, checkIn, checkOut, category, datePost, datePut) {
         this.reservation = reservation;
@@ -16,16 +28,5 @@ class Booking {
     }
 }
 
-class Capacity {
-    constructor(room, hotel, adults, children, priceUsd, category, roomState) {
-        this.room = room;
-        this.hotel = hotel;
-        this.adults = adults;
-        this.children = children;
-        this.priceUsd = priceUsd;
-        this.category = category;
-        this.roomState = roomState;
-    }
-}
 module.exports = Booking;
 module.exports = Capacity;
