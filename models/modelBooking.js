@@ -1,19 +1,27 @@
-class Booking {
-    constructor(reservation, paid, room, hotel, name, phone, adults, children, checkIn, checkOut, category, datePost, datePut) {
+class Booking
+{
+    constructor(reservation, timeStamp, hotel, room, category, name, phone, family, checkIn, checkOut, paid)
+    {
         this.reservation = reservation;
-        this.paid = paid;
-        this.room = room;
+        this.timeStamp = timeStamp // fecha de la reserva
         this.hotel = hotel;
-        this.name = name;
-        this.phone = phone;
-        this.adults = adults;
-        this.children = children;
-        this.checkIn = checkIn;
-        this.checkOut = checkOut;
-        this.category = category;
-        this.datePost = datePost;
-        this.datePut = datePut;
-    }
-}
+        this.room = room;
+        this.category = category;  // Standard, Gold, Platinum, Esmeralda (VIP)
+        this.name = name;          // nombre del pasajero
+        this.phone = phone;        // telefono del pasajero
+        this.family = family;      // cantidad de personas
+        this.checkIn = checkIn;    // fecha de llegada
+        this.checkOut = checkOut;  // fecha de salida
+        this.paid = paid;          // null -> sólo reservado
+    }                              // Credit Card
+                                   // Debit Card
+                                   // Cash
+                                   // Electronic Pay
+                                   // Refund
+                                   // Purchase Order
+                                   // Gift Card
+                                   // Other
+                                   // Promotion
+                                }
 
 module.exports = Booking;

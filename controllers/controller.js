@@ -7,9 +7,9 @@ let arrBooking = [];
 exports.createBooking = async (req, res) => {
     const reservation = uuidv4();
 
-    const { paid, room, hotel, name, phone, adults, children, checkIn, checkOut, category } = req.body;
-    const newBooking = new Booking(reservation, paid, room, hotel, name, phone, adults, children, checkIn, checkOut, category, moment().format('YYYYMMDD'), "");
- 
+    const { hotel, room, category, name, phone, family, checkIn, checkOut, paid } = req.body;
+    const newBooking = new Booking(reservation, moment(), hotel, room, category, name, phone, family, checkIn, checkOut, paid);
+    
     arrBooking.push(newBooking);
  
     res.json({
@@ -61,9 +61,9 @@ exports.updateBookingByReservation = async (req, res) => {
         if (bookingIndex === -1) {
             return res.status(404).json({ msg: "Reserva no encontrada" });
         }
-    
-        arrBooking[bookingIndex] = { ...arrBooking[bookingIndex], ...req.body }
-    
+
+        arrBooking[bookingIndex] = { ...arrBooking[bookingIndex], ...req.body };
+         
         return res.json({
             msg: "Reserva modificada con éxito",
             data: arrBooking[bookingIndex]
