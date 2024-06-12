@@ -1,3 +1,17 @@
+//JSON para Thunder Client
+//
+//{ 
+//    "hotel": "Dreams",
+//    "room": "501",
+//    "category": "Platinum",
+//    "name": "Juan Perez",
+//    "phone": "+56990022000",
+//    "numberOfPassengers": "2",
+//    "checkIn": "20241224",
+//    "checkOut": "20241229",
+//    "paid": "Cash"
+//}
+
 const Booking = require("../models/modelBooking");
 const moment = require("moment");
 const { v4: uuidv4 } = require("uuid");
@@ -6,6 +20,7 @@ let arrBooking = [];
 
 // CU -> Como viajero, quiero hacer una reserva en el hotel "Hotel Paraíso" para el 15 de mayo de 2023
 //       Necesito una habitación doble para dos adultos y un niño
+
 exports.createBooking = async (req, res) => {
   const reservation = uuidv4();
 
@@ -15,20 +30,21 @@ exports.createBooking = async (req, res) => {
     category,
     name,
     phone,
-    family,
+    numberOfPassengers,
     checkIn,
     checkOut,
     paid,
   } = req.body;
+
   const newBooking = new Booking(
     reservation,
-    moment(),
+    moment().format("YYYYMMDDHHMMSS"),
     hotel,
     room,
     category,
     name,
     phone,
-    family,
+    numberOfPassengers,
     checkIn,
     checkOut,
     paid
@@ -37,7 +53,7 @@ exports.createBooking = async (req, res) => {
   arrBooking.push(newBooking);
 
   res.json({ msg: "Reserva creada con éxito", data: newBooking });
-};
+}
 
 // CU -> Como gerente del hotel, quiero ver una lista de todas las reservas para hoy
 //       para poder planificar el trabajo del personal de limpieza y recepción
@@ -46,7 +62,7 @@ exports.createBooking = async (req, res) => {
 //       quiero ver todas las reservas para el "Hotel Paraíso"
 //       para el próximo mes
 
-exports.getBookingsBy = async (req, res) => {
+exports.getBookingsBySome = async (req, res) => {
   const { checkin, hotel } = req.query;
 
   if (checkin) {
@@ -54,10 +70,11 @@ exports.getBookingsBy = async (req, res) => {
       (booking) => booking.checkIn === checkin
     );
 
-    if (bookingFiltered.length === 0)
+    if (bookingFiltered.length === 0) {
       return res
         .status(404)
         .json({ msg: "No se encontraron reservas con esta fecha de check-in" });
+    }
 
     return res.json({
       msg: "Reservas encontradas con esta fecha de check-in",
@@ -68,43 +85,38 @@ exports.getBookingsBy = async (req, res) => {
       (booking) => booking.hotel === hotel
     );
 
-    if (bookingFiltered.length === 0)
+    if (bookingFiltered.length === 0) {
       return res
         .status(404)
         .json({ msg: "No se encontraron reservas para el hotel" });
-
-    let month = moment().format("MM");
-    let year = moment().format("YYYY");
-    month++;
-    if (month > 12) {
-      let month = 1;
-      year++;
     }
-    const dateFrom = year + month + "01";
-    const dateTo = year + month + "31"; // no importa que algunos meses tengan menos de 31 dias
 
-    console.log(dateFrom, dateTo);
+    let month = moment().add(1, "months").format("MM");
+    let year = moment().add(1, "months").format("YYYY");
+    const dateFrom = `${year}${month}01`;
+    const dateTo = `${year}${month}31`;
 
-    const bookingFilteredByDate = bookingFiltered.filter(
-      (booking) => booking.CheckIn.isBetween(dateFrom, dateTo) === true
+    const bookingFilteredByDate = bookingFiltered.filter((booking) =>
+      moment(booking.checkIn).isBetween(dateFrom, dateTo)
     );
 
-    if (bookingFilteredByDate.length === 0)
+    if (bookingFilteredByDate.length === 0) {
       return res.status(404).json({
-        msg: "No se encontraron reservas para el hotel con check-in = próxmo mes",
-    });
+        msg: "No se encontraron reservas para el hotel con check-in = próximo mes",
+      });
+    }
 
     return res.json({
       msg: "Reservas encontradas para el hotel con check-in = próximo mes",
       data: bookingFilteredByDate,
     });
-  }
+  };
 
   return res.json({
-    msg: "Sin busqueda específica, listado de reservas existentes",
+    msg: "Sin búsqueda específica, listado de reservas existentes",
     data: arrBooking,
   });
-};
+}
 
 // CU -> Como recepcionista, necesito verificar los detalles de la reserva del huésped
 //       que acaba de llegar al hotel. Su número de reserva es 12345
@@ -115,10 +127,12 @@ exports.getBookingByReservation = async (req, res) => {
     (booking) => booking.reservation === reservation
   );
 
-  if (!booking) return res.status(404).json({ msg: "Reserva no encontrada" });
+  if (!booking) {
+    return res.status(404).json({ msg: "Reserva no encontrada" });
+  }
 
   return res.json({ msg: "Reserva encontrada con éxito", data: booking });
-};
+}
 
 // CU -> Como huésped, necesito cambiar mi reserva en el hotel "Hotel Paraíso"
 //       Originalmente reservé una habitación doble, pero ahora necesito una suite familiar
@@ -130,8 +144,9 @@ exports.updateBookingByReservation = async (req, res) => {
     (booking) => booking.reservation === reservation
   );
 
-  if (bookingIndex === -1)
+  if (bookingIndex === -1) {
     return res.status(404).json({ msg: "Reserva no encontrada" });
+  }
 
   arrBooking[bookingIndex] = { ...arrBooking[bookingIndex], ...req.body };
 
@@ -139,7 +154,7 @@ exports.updateBookingByReservation = async (req, res) => {
     msg: "Reserva modificada con éxito",
     data: arrBooking[bookingIndex],
   });
-};
+}
 
 // CU -> Como viajero, tuve un cambio de planes y
 //       ya no necesito la habitación que reservé en el hotel "Hotel Paraíso"
@@ -151,10 +166,11 @@ exports.deleteBookingByReservation = async (req, res) => {
     (booking) => booking.reservation === reservation
   );
 
-  if (bookingIndex === -1)
+  if (bookingIndex === -1) {
     return res.status(404).json({ msg: "Reserva no encontrada" });
+  }
 
   arrBooking.splice(bookingIndex, 1);
 
   return res.json({ msg: "Reserva eliminada con éxito" });
-};
+}

@@ -4,7 +4,7 @@ const usuarioController = require('../controllers/controller');
 const router = express.Router();
 
 router.post   ('/reservas', usuarioController.createBooking);
-router.get    ('/reservas', usuarioController.getBookingsBy);
+router.get    ('/reservas', usuarioController.getBookingsBySome);
 router.get    ('/reservas/:reservation', usuarioController.getBookingByReservation);
 router.put    ('/reservas/:reservation', usuarioController.updateBookingByReservation);
 router.delete ('/reservas/:reservation', usuarioController.deleteBookingByReservation);
