@@ -147,4 +147,6 @@ arrCapacity.push (new Capacity ('Dreams', 1004, 'Esmerald', 400, 8, 3, 'Bloqued'
 
 module.exports = arrCapacity;
 
+console.log ('Total habitaciones -> ' + arrCapacity.length);
+
 app.listen(port, () => console.log('Open port -> ' + port));

@@ -3,7 +3,7 @@ class Booking
     constructor(reservation, timeStamp, hotel, room, category, name, phone, family, checkIn, checkOut, paid)
     {
         this.reservation = reservation;
-        this.timeStamp = timeStamp // fecha de la reserva
+        this.timeStamp = timeStamp;// fecha de la reserva
         this.hotel = hotel;
         this.room = room;
         this.category = category;  // Standard, Gold, Platinum, Esmeralda (VIP)
@@ -22,6 +22,6 @@ class Booking
                                    // Gift Card
                                    // Other
                                    // Promotion
-                                }
+};
 
 module.exports = Booking;
