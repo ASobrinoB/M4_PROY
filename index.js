@@ -9,6 +9,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api', userRoutes)
 
+// Inventario de habitaciones por Hotel
+
 const arrCapacity = [];
 const Capacity = require('./models/modelCapacity');
 
@@ -52,22 +54,31 @@ arrCapacity.push (new Capacity ('Enjoy',   407, 'Standard',  80, 2, 1, 'Availabl
 arrCapacity.push (new Capacity ('Enjoy',   408, 'Gold',     140, 4, 2, 'Available'));
 arrCapacity.push (new Capacity ('Enjoy',   409, 'Platinum', 200, 6, 3, 'Available'));
 arrCapacity.push (new Capacity ('Enjoy',   410, 'Standard',  80, 2, 1, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy',   501, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy',   502, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy',   503, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy',   504, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy',   601, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy',   602, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy',   603, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy',   604, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy',   701, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy',   702, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy',   703, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy',   704, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy',   801, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy',   802, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy',   803, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy',   804, 'Esmerald', 400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',   501, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',   502, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',   503, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',   504, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',   601, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',   602, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',   603, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',   604, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',   701, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',   702, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',   703, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',   704, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',   801, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',   802, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',   803, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',   804, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',   901, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',   902, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',   903, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',   904, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy',  1001, 'VIP',      400, 8, 3, 'Blocked'));
+arrCapacity.push (new Capacity ('Enjoy',  1002, 'VIP',      400, 8, 3, 'Blocked'));
+arrCapacity.push (new Capacity ('Enjoy',  1003, 'VIP',      400, 8, 3, 'Blocked'));
+arrCapacity.push (new Capacity ('Enjoy',  1004, 'VIP',      400, 8, 3, 'Blocked'));
+
 arrCapacity.push (new Capacity ('Dreams',  101, 'Standard',  80, 2, 1, 'Available'));
 arrCapacity.push (new Capacity ('Dreams',  102, 'Gold',     140, 4, 2, 'Available'));
 arrCapacity.push (new Capacity ('Dreams',  103, 'Platinum', 200, 6, 3, 'Available'));
@@ -128,22 +139,30 @@ arrCapacity.push (new Capacity ('Dreams',  607, 'Standard',  80, 2, 1, 'Availabl
 arrCapacity.push (new Capacity ('Dreams',  608, 'Gold',     140, 4, 2, 'Available'));
 arrCapacity.push (new Capacity ('Dreams',  609, 'Platinum', 200, 6, 3, 'Available'));
 arrCapacity.push (new Capacity ('Dreams',  610, 'Standard',  80, 2, 1, 'Available'));
-arrCapacity.push (new Capacity ('Dreams',  701, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Dreams',  702, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Dreams',  703, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Dreams',  704, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Dreams',  801, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Dreams',  802, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Dreams',  803, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Dreams',  804, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Dreams',  901, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Dreams',  902, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Dreams',  903, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Dreams',  904, 'Esmerald', 400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Dreams', 1001, 'Esmerald', 400, 8, 3, 'Bloqued'));
-arrCapacity.push (new Capacity ('Dreams', 1002, 'Esmerald', 400, 8, 3, 'Bloqued'));
-arrCapacity.push (new Capacity ('Dreams', 1003, 'Esmerald', 400, 8, 3, 'Bloqued'));
-arrCapacity.push (new Capacity ('Dreams', 1004, 'Esmerald', 400, 8, 3, 'Bloqued'));
+arrCapacity.push (new Capacity ('Dreams',  701, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Dreams',  702, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Dreams',  703, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Dreams',  704, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Dreams',  801, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Dreams',  802, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Dreams',  803, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Dreams',  804, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Dreams',  901, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Dreams',  902, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Dreams',  903, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Dreams',  904, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Dreams', 1001, 'VIP',      400, 8, 3, 'Bloqued'));
+arrCapacity.push (new Capacity ('Dreams', 1002, 'VIP',      400, 8, 3, 'Bloqued'));
+arrCapacity.push (new Capacity ('Dreams', 1003, 'VIP',      400, 8, 3, 'Bloqued'));
+arrCapacity.push (new Capacity ('Dreams', 1004, 'VIP',      400, 8, 3, 'Bloqued'));
+arrCapacity.push (new Capacity ('Dreams', 1101, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Dreams', 1102, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Dreams', 1103, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Dreams', 1104, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Dreams', 1201, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Dreams', 1202, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Dreams', 1203, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Dreams', 1204, 'VIP',      400, 8, 3, 'Available'));
 
 module.exports = arrCapacity;
 

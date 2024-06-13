@@ -1,3 +1,17 @@
+//JSON para usar en Thunder Client
+//
+//{ 
+//    "hotel": "Dreams",
+//    "room": "701",
+//    "category": "VIP",
+//    "name": "Juan Perez Gonzalez",
+//    "phone": "+56990022000",
+//    "numberOfPassengers": "2",
+//    "checkIn":  "20241220",
+//    "checkOut": "20241231",
+//    "paid": "Pending"
+//}
+
 class Booking
 {
     constructor(reservation, timeStamp, hotel, room, category, name, phone, numberOfPassengers, checkIn, checkOut, paid)
@@ -6,28 +20,14 @@ class Booking
         this.timeStamp = timeStamp;
         this.hotel = hotel;
         this.room = room;
-        this.category = category;  // Standard, Gold, Platinum, Esmeralda (VIP)
+        this.category = category;  // Standard, Gold, Platinum, VIP
         this.name = name;
         this.phone = phone;
         this.numberOfPassengers = numberOfPassengers;
-        this.checkIn = checkIn;    // fecha de llegada
-        this.checkOut = checkOut;  // fecha de salida
-        this.paid = paid;          // null (sin pagar), Credit Card, Debit Card, Cash, Electronic Pay, Refund, Purchase Order, Gift Card, Other, Promotion
+        this.checkIn = checkIn;    // llegada
+        this.checkOut = checkOut;  // salida
+        this.paid = paid;          // Pending, Credit-Card, Debit-Card, Cash, Electronic-Pay, Refund, Purchase-Order, Gift-Card, Other, Promotion
     }
 };
 
 module.exports = Booking;
-
-//JSON para Thunder Client
-//
-//{ 
-//    "hotel": "Dreams",
-//    "room": "501",
-//    "category": "Platinum",
-//    "name": "Juan Perez",
-//    "phone": "+56990022000",
-//    "numberOfPassengers": "2",
-//    "checkIn": "20241224",
-//    "checkOut": "20241229",
-//    "paid": "Cash"
-//}
