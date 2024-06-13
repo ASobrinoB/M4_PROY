@@ -1,10 +1,9 @@
-require('dotenv').config();
-const port = process.env.PORT || 3000;
-
 const express = require('express');
+require('dotenv').config();
 const userRoutes = require('./routes/userRoutes');
+const path = require('path');
 
-const path = require('path')
+// swagger
 const swaggerUI = require ('swagger-ui-express');
 const swaggerJsDoc = require ('swagger-jsdoc');
 
@@ -12,7 +11,7 @@ const swaggerSpec = {
     definition: {
         openapi: "3.0.0",
         info: {
-            title: "NodeJS API Booking",
+            title: "API Booking",
             version: "1.0.0",
         }, 
         servers: [
@@ -21,12 +20,14 @@ const swaggerSpec = {
             },
         ],
     },
-    apis: [`${path.join("", "/Users/alejandrosobrino/OneDrive/udd/M4_PROY/routes/userRoutes.js")}`],
-
+    apis: [`${path.join("", "./routes/*.js")}`],
 };
 
+// settings
 const app = express();
+const port = process.env.PORT || 3000;
 
+// middleware
 app.use(express.json());
 app.use('/api', userRoutes)
 app.use('/api-doc', swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));

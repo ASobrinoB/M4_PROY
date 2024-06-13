@@ -16,6 +16,6 @@ class Booking
         this.checkOut = checkOut;  // salida
         this.paid = paid;          // Pending, Credit-Card, Debit-Card, Cash, Electronic-Pay, Refund, Purchase-Order, Gift-Card, Other, Promotion
     }
-};
+}
 
 module.exports = Booking;
