@@ -6,7 +6,7 @@
 //    "category": "VIP",
 //    "name": "Juan Perez Gonzalez",
 //    "phone": "+56990022000",
-//    "numberOfGuest": 2,
+//    "qttyGuest": 2,
 //    "checkIn":  "20241220",
 //    "checkOut": "20241231",
 //    "paid": "Pending"
@@ -18,30 +18,30 @@ const { v4: uuidv4 } = require("uuid");
 
 let arrBooking = [];
 
-// CU -> Como viajero, quiero hacer una reserva en el hotel "Hotel Paraíso" para el 15 de mayo de 2023
+// CU -> Como viajero, quiero hacer una reserva en el hotel Hotel Paraíso para el 15 de mayo de 2023
 //       Necesito una habitación doble para dos adultos y un niño
 
 exports.createBooking = async (req, res) =>
 {
-  const {hotel, room, category, name, phone, numberOfGuest, checkIn, checkOut, paid } = req.body;
+  const { hotel, room, category, name, phone, qttyGuest, checkIn, checkOut, paid } = req.body;
 
-  const newBooking = new Booking(uuidv4(), moment().format("YYYYMMDDHHMM"), hotel, parseInt(room), category, name, phone, parseInt(numberOfGuest), checkIn, checkOut, paid);
+  const newBooking = new Booking(uuidv4(), moment().format("YYYYMMDDHHMM"), hotel, parseInt(room), category, name, phone, parseInt(qttyGuest), checkIn, checkOut, paid);
 
   arrBooking.push(newBooking);
 
   res.json({ msg: "Reserva creada con éxito", data: newBooking });
 
-  console.log ('Total de reservas -> ' + arrBooking.length);
-  console.log ('Reservas -> ' + arrBooking);
+  arrBooking.forEach ( booking => console.log (booking) );
+  console.log ('Total reservas -> ' + arrBooking.length);
 };
 
 // CU -> Como recepcionista, necesito verificar los detalles de la reserva del huésped
 //       que acaba de llegar al hotel. Su número de reserva es 12345
 
-exports.getBookingByReservation = async (req, res) =>
+exports.getBookingByid = async (req, res) =>
 {
-  const reservation = req.params.reservation;
-  const booking = arrBooking.find(booking => booking.reservation === reservation);
+  const id = req.params.id;
+  const booking = arrBooking.find(booking => booking.id === id);
 
   if (!booking)
   {
@@ -50,20 +50,20 @@ exports.getBookingByReservation = async (req, res) =>
     .json({ msg: "Reserva no encontrada" });
   }
 
-  console.log ('Total de reservas -> ' + arrBooking.length);
-  console.log ('Reservas -> ' + arrBooking);
+  arrBooking.forEach ( booking => console.log (booking) );
+  console.log ('Total reservas -> ' + arrBooking.length);
 
   return res.json({ msg: "Reserva encontrada con éxito", data: booking });
 };
 
-// CU -> Como huésped, necesito cambiar mi reserva en el hotel "Hotel Paraíso"
+// CU -> Como huésped, necesito cambiar mi reserva en el hotel Hotel Paraíso
 //       Originalmente reservé una habitación doble, pero ahora necesito una suite familiar
 //       Mi número de reserva es 12345
 
-exports.updateBookingByReservation = async (req, res) =>
+exports.updateBookingByid = async (req, res) =>
 {
-  const reservation = req.params.reservation;
-  const bookingIndex = arrBooking.findIndex(booking => booking.reservation === reservation);
+  const id = req.params.id;
+  const bookingIndex = arrBooking.findIndex(booking => booking.id === id);
 
   if (bookingIndex === -1)
   {
@@ -73,24 +73,24 @@ exports.updateBookingByReservation = async (req, res) =>
   }
 
   req.body.room          = parseInt(req.body.room);
-  req.body.numberOfGuest = parseInt(req.body.numberOfGuest);
+  req.body.qttyGuest = parseInt(req.body.qttyGuest);
 
   arrBooking[bookingIndex] = { ...arrBooking[bookingIndex], ...req.body };
 
-  console.log ('Total de reservas -> ' + arrBooking.length);
-  console.log ('Reservas -> ' + arrBooking);
+  arrBooking.forEach ( booking => console.log (booking) );
+  console.log ('Total reservas -> ' + arrBooking.length);
 
   return res.json({ msg: "Reserva modificada con éxito", data: arrBooking[bookingIndex] });
 };
 
 // CU -> Como viajero, tuve un cambio de planes y
-//       ya no necesito la habitación que reservé en el hotel "Hotel Paraíso"
+//       ya no necesito la habitación que reservé en el hotel Hotel Paraíso
 //       Mi número de reserva es 12345
 
-exports.deleteBookingByReservation = async (req, res) =>
+exports.deleteBookingByid = async (req, res) =>
 {
-  const reservation = req.params.reservation;
-  const bookingIndex = arrBooking.findIndex(booking => booking.reservation === reservation);
+  const id = req.params.id;
+  const bookingIndex = arrBooking.findIndex(booking => booking.id === id);
 
   if (bookingIndex === -1)
   {
@@ -101,32 +101,32 @@ exports.deleteBookingByReservation = async (req, res) =>
 
   arrBooking.splice(bookingIndex, 1);
 
-  console.log ('Total de reservas -> ' + arrBooking.length);
-  console.log ('Reservas -> ' + arrBooking);
+  arrBooking.forEach ( booking => console.log (booking) );
+  console.log ('Total reservas -> ' + arrBooking.length);
 
   return res.json({ msg: "Reserva eliminada con éxito" });
 };
 
-// CU -> Como gerente del hotel, quiero ver una lista de todas las <reservas> para <hoy>
-//       para poder planificar el trabajo del personal de limpieza y recepción
+// CU01 -> Como gerente del hotel, quiero ver una lista de todas las reservas para hoy
+//         para poder planificar el trabajo del personal de limpieza y recepción
 //
-// CU -> Como gerente de una cadena de hoteles
-//       quiero ver todas las reservas para el <Hotel Paraíso>
-//       para el <próximo mes>
+// CU02 -> Como gerente de una cadena de hoteles
+//         quiero ver todas las reservas para el Hotel Paraíso
+//         para el próximo mes
 //
-// CU -> Como gerente del hotel, quiero ver todas las <reservas> para la <semana de Navidad>
-//       para poder planificar el personal y las actividades necesarias
+// CU03 -> Como gerente del hotel, quiero ver todas las reservas para la semana de Navidad
+//         para poder planificar el personal y las actividades necesarias
 //
-// CU -> Como gerente del hotel, quiero ver todas las reservas para nuestras suites de lujo
-//       para el próximo mes para asegurarme de que todo esté en perfectas condiciones
-//       para nuestros huéspedes VIP
+// CU04 -> Como gerente del hotel, quiero ver todas las reservas para nuestras suites de lujo
+//         para el próximo mes para asegurarme de que todo esté en perfectas condiciones
+//         para nuestros huéspedes VIP
 //
-// CU -> Como gerente del hotel, quiero ver todas las reservas que están pendientes de pago
-//       para poder hacer un seguimiento con los clientes
+// CU05 -> Como gerente del hotel, quiero ver todas las reservas que están pendientes de pago
+//         para poder hacer un seguimiento con los clientes
 //
-// CU -> Como gerente del hotel, quiero ver todas las reservas para grupos de más de 5
-//       personas para el próximo mes, para poder planificar las necesidades adicionales
-//       de estos grupos grandes
+// CU06 -> Como gerente del hotel, quiero ver todas las reservas para grupos de más de 5
+//         personas para el próximo mes, para poder planificar las necesidades adicionales
+//         de estos grupos grandes
 
 exports.getBookingsBySome = async (req, res) =>
 {
@@ -234,7 +234,7 @@ exports.getBookingsBySome = async (req, res) =>
                               } else
                                     if (num_huespedes) 
                                     {
-                                       const bookingFiltered = arrBooking.filter(booking => booking.numberOfGuest >= num_huespedes);
+                                       const bookingFiltered = arrBooking.filter(booking => booking.qttyGuest >= num_huespedes);
                     
                                        if (bookingFiltered.length === 0)
                                        {

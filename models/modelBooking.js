@@ -6,7 +6,7 @@
 //    "category": "VIP",
 //    "name": "Juan Perez Gonzalez",
 //    "phone": "+56990022000",
-//    "numberOfGuest": 2,
+//    "qttyGuest": 2,
 //    "checkIn":  "20241220",
 //    "checkOut": "20241231",
 //    "paid": "Pending"
@@ -14,16 +14,16 @@
 
 class Booking
 {
-    constructor(reservation, timeStamp, hotel, room, category, name, phone, numberOfGuest, checkIn, checkOut, paid)
+    constructor(id, timeStamp, hotel, room, category, name, phone, qttyGuest, checkIn, checkOut, paid)
     {
-        this.reservation = reservation;
+        this.id = id;
         this.timeStamp = timeStamp;
         this.hotel = hotel;
         this.room = room;
         this.category = category;  // Standard, Gold, Platinum, VIP
         this.name = name;
         this.phone = phone;
-        this.numberOfGuest = numberOfGuest;
+        this.qttyGuest = qttyGuest;
         this.checkIn = checkIn;    // llegada
         this.checkOut = checkOut;  // salida
         this.paid = paid;          // Pending, Credit-Card, Debit-Card, Cash, Electronic-Pay, Refund, Purchase-Order, Gift-Card, Other, Promotion

@@ -14,31 +14,30 @@ app.use('/api', userRoutes)
 const arrCapacity = [];
 const Capacity = require('./models/modelCapacity');
 
-arrCapacity.push (new Capacity ('Enjoy Santiago',   101, 'Standard',  80, 2, 1, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   102, 'Gold',     140, 4, 2, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   103, 'Platinum', 200, 6, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   104, 'Standard',  80, 2, 1, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   105, 'Gold',     140, 4, 2, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   201, 'Standard',  80, 2, 1, 'Bloqued'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   202, 'Gold',     140, 4, 2, 'Bloqued'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   203, 'Platinum', 200, 6, 3, 'Bloqued'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   204, 'Standard',  80, 2, 1, 'Bloqued'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   205, 'Gold',     140, 4, 2, 'Bloqued'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   301, 'Standard',  80, 2, 1, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   302, 'Gold',     140, 4, 2, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   303, 'Platinum', 200, 6, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   304, 'Standard',  80, 2, 1, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   305, 'Gold',     140, 4, 2, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   401, 'VIP',      400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   402, 'VIP',      400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   403, 'VIP',      400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   501, 'VIP',      400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   502, 'VIP',      400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   503, 'VIP',      400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   601, 'VIP',      400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   602, 'VIP',      400, 8, 3, 'Available'));
-arrCapacity.push (new Capacity ('Enjoy Santiago',   603, 'VIP',      400, 8, 3, 'Available'));
-
+arrCapacity.push (new Capacity ('Enjoy Santiago',       101, 'Standard',  80, 2, 1, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       102, 'Gold',     140, 4, 2, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       103, 'Platinum', 200, 6, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       104, 'Standard',  80, 2, 1, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       105, 'Gold',     140, 4, 2, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       201, 'Standard',  80, 2, 1, 'Bloqued'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       202, 'Gold',     140, 4, 2, 'Bloqued'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       203, 'Platinum', 200, 6, 3, 'Bloqued'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       204, 'Standard',  80, 2, 1, 'Bloqued'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       205, 'Gold',     140, 4, 2, 'Bloqued'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       301, 'Standard',  80, 2, 1, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       302, 'Gold',     140, 4, 2, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       303, 'Platinum', 200, 6, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       304, 'Standard',  80, 2, 1, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       305, 'Gold',     140, 4, 2, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       401, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       402, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       403, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       501, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       502, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       503, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       601, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       602, 'VIP',      400, 8, 3, 'Available'));
+arrCapacity.push (new Capacity ('Enjoy Santiago',       603, 'VIP',      400, 8, 3, 'Available'));
 arrCapacity.push (new Capacity ('Monticello Rancagua',  101, 'Standard',  80, 2, 1, 'Available'));
 arrCapacity.push (new Capacity ('Monticello Rancagua',  102, 'Gold',     140, 4, 2, 'Available'));
 arrCapacity.push (new Capacity ('Monticello Rancagua',  103, 'Platinum', 200, 6, 3, 'Available'));
@@ -88,9 +87,9 @@ arrCapacity.push (new Capacity ('Monticello Rancagua', 1201, 'VIP',      400, 8,
 arrCapacity.push (new Capacity ('Monticello Rancagua', 1202, 'VIP',      400, 8, 3, 'Available'));
 arrCapacity.push (new Capacity ('Monticello Rancagua', 1203, 'VIP',      400, 8, 3, 'Available'));
 
-module.exports = arrCapacity;
+arrCapacity.forEach ( capacity => console.log (capacity) );
+console.log ('Total de habitaciones disponibles -> ' + arrCapacity.length);
 
-console.log ('Total habitaciones -> ' + arrCapacity.length);
-console.log ('Habitaciones -> ' + arrCapacity);
+module.exports = arrCapacity;
 
 app.listen(port, () => console.log('Open port -> ' + port));
