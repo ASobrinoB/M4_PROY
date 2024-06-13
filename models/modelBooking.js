@@ -1,17 +1,3 @@
-//JSON para usar en Thunder Client
-//
-//{ 
-//    "hotel": "Monticello Rancagua",
-//    "room": 701,
-//    "category": "VIP",
-//    "name": "Juan Perez Gonzalez",
-//    "phone": "+56990022000",
-//    "qttyGuest": 2,
-//    "checkIn":  "20241220",
-//    "checkOut": "20241231",
-//    "paid": "Pending"
-//}
-
 class Booking
 {
     constructor(id, timeStamp, hotel, room, category, name, phone, qttyGuest, checkIn, checkOut, paid)

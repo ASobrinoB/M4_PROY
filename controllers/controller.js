@@ -1,17 +1,3 @@
-//JSON para usar en Thunder Client
-//
-//{ 
-//    "hotel": "Monticello Rancagua",
-//    "room": 701,
-//    "category": "VIP",
-//    "name": "Juan Perez Gonzalez",
-//    "phone": "+56990022000",
-//    "qttyGuest": 2,
-//    "checkIn":  "20241220",
-//    "checkOut": "20241231",
-//    "paid": "Pending"
-//}
-
 const Booking = require("../models/modelBooking");
 const moment = require("moment");
 const { v4: uuidv4 } = require("uuid");
@@ -25,7 +11,7 @@ exports.createBooking = async (req, res) =>
 {
   const { hotel, room, category, name, phone, qttyGuest, checkIn, checkOut, paid } = req.body;
 
-  const newBooking = new Booking(uuidv4(), moment().format("YYYYMMDDHHMMSS"), hotel, parseInt(room), category, name, phone, parseInt(qttyGuest), checkIn, checkOut, paid);
+  const newBooking = new Booking(uuidv4(), moment().format("YYYY-MM-DD HH:MM:SS"), hotel, parseInt(room), category, name, phone, parseInt(qttyGuest), checkIn, checkOut, paid);
 
   arrBooking.push(newBooking);
 
@@ -72,7 +58,7 @@ exports.updateBookingById = async (req, res) =>
     .json({ msg: "Reserva no encontrada" });
   }
 
-  req.body.room          = parseInt(req.body.room);
+  req.body.room      = parseInt(req.body.room);
   req.body.qttyGuest = parseInt(req.body.qttyGuest);
 
   arrBooking[bookingIndex] = { ...arrBooking[bookingIndex], ...req.body };
@@ -160,10 +146,10 @@ exports.getBookingsBySome = async (req, res) =>
              let month = moment().add(1, "months").format("MM");
              let year = moment().add(1, "months").format("YYYY");
   
-             const dateFrom = `${year}${month}01`;
-             const dateTo = `${year}${month}31`;
+             const dateFrom = `${year}-${month}-01`;
+             const dateTo = `${year}-${month}-31`;
   
-             const bookingFilteredByDateRange = bookingFiltered.filter(booking => moment(booking.checkIn).isBetween(dateFrom, dateTo));
+             const bookingFilteredByDateRange = bookingFiltered.filter(booking => moment(booking.checkIn).isBetween(dateFrom, dateTo, 'days', '[]'));
   
              if (bookingFilteredByDateRange.length === 0)
              {
@@ -203,10 +189,12 @@ exports.getBookingsBySome = async (req, res) =>
                          let month = moment().add(1, "months").format("MM");
                          let year = moment().add(1, "months").format("YYYY");
           
-                         const dateFrom = `${year}${month}01`;
-                         const dateTo = `${year}${month}31`;
+                         const dateFrom = `${year}-${month}-01`;
+                         const dateTo = `${year}-${month}-31`;
+
+                         console.log (dateFrom, dateTo);
           
-                         const bookingFilteredByDateRange = bookingFiltered.filter(booking => moment(booking.checkIn).isBetween(dateFrom, dateTo));
+                         const bookingFilteredByDateRange = bookingFiltered.filter(booking => moment(booking.checkIn).isBetween(dateFrom, dateTo, 'days', '[]'));
           
                          if (bookingFilteredByDateRange.length === 0)
                          {
@@ -246,10 +234,10 @@ exports.getBookingsBySome = async (req, res) =>
                                        let month = moment().add(1, "months").format("MM");
                                        let year = moment().add(1, "months").format("YYYY");
                     
-                                       const dateFrom = `${year}${month}01`;
-                                       const dateTo = `${year}${month}31`;
+                                       const dateFrom = `${year}-${month}-01`;
+                                       const dateTo = `${year}-${month}-31`;
                     
-                                       const bookingFilteredByDateRange = bookingFiltered.filter(booking => moment(booking.checkIn).isBetween(dateFrom, dateTo));
+                                       const bookingFilteredByDateRange = bookingFiltered.filter(booking => moment(booking.checkIn).isBetween(dateFrom, dateTo, 'days', '[]'));
                     
                                        if (bookingFilteredByDateRange.length === 0)
                                        {

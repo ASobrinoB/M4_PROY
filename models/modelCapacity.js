@@ -1,5 +1,3 @@
-// Inventario de habitaciones por Hotel
-
 class Capacity
 {
     constructor(hotel, room, category, price, adults, children, roomState)

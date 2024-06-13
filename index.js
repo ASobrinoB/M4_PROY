@@ -3,17 +3,37 @@ const port = process.env.PORT || 3000;
 
 const express = require('express');
 const userRoutes = require('./routes/userRoutes');
+
+const path = require('path')
+const swaggerUI = require ('swagger-ui-express');
+const swaggerJsDoc = require ('swagger-jsdoc');
+
+const swaggerSpec = {
+    definition: {
+        openapi: "3.0.0",
+        info: {
+            title: "NodeJS API Booking",
+            version: "1.0.0",
+        }, 
+        servers: [
+            {
+                url: "http://localhost:3001"
+            },
+        ],
+    },
+    apis: [`${path.join("/api/reservas", "./routes/userRoutes.js")}`],
+};
+
 const app = express();
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use('/api', userRoutes)
+app.use('/api-doc', swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
 
-// Inventario de habitaciones por Hotel
+app.use(express.urlencoded({ extended: true }));
 
 const arrCapacity = [];
 const Capacity = require('./models/modelCapacity');
-
 arrCapacity.push (new Capacity ('Enjoy Santiago',       101, 'Standard',  80, 2, 1, 'Available'));
 arrCapacity.push (new Capacity ('Enjoy Santiago',       102, 'Gold',     140, 4, 2, 'Available'));
 arrCapacity.push (new Capacity ('Enjoy Santiago',       103, 'Platinum', 200, 6, 3, 'Available'));
