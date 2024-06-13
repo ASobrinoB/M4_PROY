@@ -25,7 +25,7 @@ exports.createBooking = async (req, res) =>
 {
   const { hotel, room, category, name, phone, qttyGuest, checkIn, checkOut, paid } = req.body;
 
-  const newBooking = new Booking(uuidv4(), moment().format("YYYYMMDDHHMM"), hotel, parseInt(room), category, name, phone, parseInt(qttyGuest), checkIn, checkOut, paid);
+  const newBooking = new Booking(uuidv4(), moment().format("YYYYMMDDHHMMSS"), hotel, parseInt(room), category, name, phone, parseInt(qttyGuest), checkIn, checkOut, paid);
 
   arrBooking.push(newBooking);
 
@@ -33,12 +33,12 @@ exports.createBooking = async (req, res) =>
 
   arrBooking.forEach ( booking => console.log (booking) );
   console.log ('Total reservas -> ' + arrBooking.length);
-};
+}
 
 // CU -> Como recepcionista, necesito verificar los detalles de la reserva del huésped
 //       que acaba de llegar al hotel. Su número de reserva es 12345
 
-exports.getBookingByid = async (req, res) =>
+exports.getBookingById = async (req, res) =>
 {
   const id = req.params.id;
   const booking = arrBooking.find(booking => booking.id === id);
@@ -60,7 +60,7 @@ exports.getBookingByid = async (req, res) =>
 //       Originalmente reservé una habitación doble, pero ahora necesito una suite familiar
 //       Mi número de reserva es 12345
 
-exports.updateBookingByid = async (req, res) =>
+exports.updateBookingById = async (req, res) =>
 {
   const id = req.params.id;
   const bookingIndex = arrBooking.findIndex(booking => booking.id === id);
@@ -87,7 +87,7 @@ exports.updateBookingByid = async (req, res) =>
 //       ya no necesito la habitación que reservé en el hotel Hotel Paraíso
 //       Mi número de reserva es 12345
 
-exports.deleteBookingByid = async (req, res) =>
+exports.deleteBookingById = async (req, res) =>
 {
   const id = req.params.id;
   const bookingIndex = arrBooking.findIndex(booking => booking.id === id);
