@@ -2,11 +2,11 @@
 //
 //{ 
 //    "hotel": "Dreams",
-//    "room": "701",
+//    "room": 701,
 //    "category": "VIP",
 //    "name": "Juan Perez Gonzalez",
 //    "phone": "+56990022000",
-//    "numberOfPassengers": "2",
+//    "numberOfPassengers": 2,
 //    "checkIn":  "20241220",
 //    "checkOut": "20241231",
 //    "paid": "Pending"

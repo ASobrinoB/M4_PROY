@@ -2,11 +2,11 @@
 //
 //{ 
 //    "hotel": "Dreams",
-//    "room": "701",
+//    "room": 701,
 //    "category": "VIP",
 //    "name": "Juan Perez Gonzalez",
 //    "phone": "+56990022000",
-//    "numberOfPassengers": "2",
+//    "numberOfPassengers": 2,
 //    "checkIn":  "20241220",
 //    "checkOut": "20241231",
 //    "paid": "Pending"
@@ -25,7 +25,7 @@ exports.createBooking = async (req, res) =>
 {
   const {hotel, room, category, name, phone, numberOfPassengers, checkIn, checkOut, paid } = req.body;
 
-  const newBooking = new Booking(uuidv4(), moment().format("YYYYMMDDHHMM"), hotel, room, category, name, phone, numberOfPassengers, checkIn, checkOut, paid);
+  const newBooking = new Booking(uuidv4(), moment().format("YYYYMMDDHHMM"), hotel, parseInt(room), category, name, phone, parseInt(numberOfPassengers), checkIn, checkOut, paid);
 
   arrBooking.push(newBooking);
 
@@ -67,6 +67,9 @@ exports.updateBookingByReservation = async (req, res) =>
     .status(404)
     .json({ msg: "Reserva no encontrada" });
   }
+
+  req.body.room               = parseInt(req.body.room);
+  req.body.numberOfPassengers = parseInt(req.body.numberOfPassengers)
 
   arrBooking[bookingIndex] = { ...arrBooking[bookingIndex], ...req.body };
 
@@ -266,4 +269,4 @@ exports.getBookingsBySome = async (req, res) =>
                                   console.log ('Total de reservas -> ' + arrBooking.length);
   
                                   return res.json({ msg: "Listado de reservas existentes (sin poner un filtro)", data: arrBooking });
-};
+}
