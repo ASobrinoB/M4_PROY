@@ -9,9 +9,9 @@ let arrBooking = [];
 
 exports.createBooking = async (req, res) =>
 {
-  const { hotel, room, category, name, phone, qttyGuest, checkIn, checkOut, paid } = req.body;
+  const { hotel, room, category, name, phone, email, qttyGuest, specialFood, checkIn, checkOut, paid } = req.body;
 
-  const newBooking = new Booking(uuidv4(), moment().format("YYYY-MM-DD HH:MM:SS"), hotel, parseInt(room), category, name, phone, parseInt(qttyGuest), checkIn, checkOut, paid);
+  const newBooking = new Booking(uuidv4(), moment().format("YYYY-MM-DD HH:MM:SS"), hotel, parseInt(room), category, name, phone, email, parseInt(qttyGuest), specialFood, checkIn, checkOut, paid);
 
   arrBooking.push(newBooking);
 

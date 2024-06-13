@@ -6,7 +6,7 @@ const router = express.Router();
  * @swagger
  * components:
  *  schemas:
- *      Booking:
+ *      booking:
  *          type: object
  *          properties:
  *              id:
@@ -30,9 +30,15 @@ const router = express.Router();
  *              phone:
  *                  type: string
  *                  description: telefono del pasajero 
+ *              email:
+ *                  type: string
+ *                  description: correo del pasajero 
  *              qttyGuest:
  *                  type: integer
  *                  description: cantidad de personas
+ +              specialFood:
+ *                  type: string
+ *                  description: comida especial
  *              checkIn:
  *                  type: date-time
  *                  description: fecha de llegada en formato YYYY-MM-DD
@@ -48,7 +54,9 @@ const router = express.Router();
  *              - category
  *              - name
  *              - phone
+ *              - email
  *              - qttyGuest
+ *              - specialFood
  *              - checkIn
  *              - checkOut
  *              - paid
@@ -60,7 +68,9 @@ const router = express.Router();
  *              category: VIP
  *              name: Juan Perez Gonzalez
  *              phone: +56990022000
+ *              email: telemensajes@hotmail.com
  *              qttyGuest: 3
+ *              specialFood: Kosher
  *              checkIn: 2024-12-20
  *              checkOut: 2024-12-31
  *              paid: Cash

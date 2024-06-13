@@ -21,7 +21,8 @@ const swaggerSpec = {
             },
         ],
     },
-    apis: [`${path.join("/api/reservas", "./routes/userRoutes.js")}`],
+    apis: [`${path.join("", "/Users/alejandrosobrino/OneDrive/udd/M4_PROY/routes/userRoutes.js")}`],
+
 };
 
 const app = express();
