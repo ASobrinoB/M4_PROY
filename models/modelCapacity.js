@@ -9,7 +9,7 @@ class Capacity
         this.adults = adults;        // cantidad de adultos
         this.children = children;    // cantidad de niños
         this.roomState = roomState;  // Blocked (habitación en reparacion o remodelación), Available (habitación disponible), Busy (habitación ocupada)
-    }
-}
+    };
+};
 
 module.exports = Capacity;

@@ -4,8 +4,8 @@ const { v4: uuidv4 } = require("uuid");
 
 let arrBooking = [];
 
-// CU -> Como viajero, quiero hacer una reserva en el hotel Hotel Paraíso para el 15 de mayo de 2023
-//       Necesito una habitación doble para dos adultos y un niño
+// CU01 -> Como viajero, quiero hacer una reserva en el hotel Hotel Paraíso para el 15 de mayo de 2023
+//         Necesito una habitación doble para dos adultos y un niño
 
 exports.createBooking = async (req, res) =>
 {
@@ -18,11 +18,11 @@ exports.createBooking = async (req, res) =>
   res.json({ msg: "Reserva creada con éxito", data: newBooking });
 
   arrBooking.forEach ( booking => console.log (booking) );
-  console.log ('Total reservas -> ' + arrBooking.length);
-}
+  console.log ("Total reservas -> " + arrBooking.length);
+};
 
-// CU -> Como recepcionista, necesito verificar los detalles de la reserva del huésped
-//       que acaba de llegar al hotel. Su número de reserva es 12345
+// CU02 -> Como recepcionista, necesito verificar los detalles de la reserva del huésped
+//         que acaba de llegar al hotel. Su número de reserva es 12345
 
 exports.getBookingById = async (req, res) =>
 {
@@ -34,17 +34,17 @@ exports.getBookingById = async (req, res) =>
     return res
     .status(404)
     .json({ msg: "Reserva no encontrada" });
-  }
+  };
 
   arrBooking.forEach ( booking => console.log (booking) );
-  console.log ('Total reservas -> ' + arrBooking.length);
+  console.log ("Total reservas -> " + arrBooking.length);
 
   return res.json({ msg: "Reserva encontrada con éxito", data: booking });
 };
 
-// CU -> Como huésped, necesito cambiar mi reserva en el hotel Hotel Paraíso
-//       Originalmente reservé una habitación doble, pero ahora necesito una suite familiar
-//       Mi número de reserva es 12345
+// CU03 -> Como huésped, necesito cambiar mi reserva en el hotel Hotel Paraíso
+//         Originalmente reservé una habitación doble, pero ahora necesito una suite familiar
+//         Mi número de reserva es 12345
 
 exports.updateBookingById = async (req, res) =>
 {
@@ -56,7 +56,7 @@ exports.updateBookingById = async (req, res) =>
     return res
     .status(404)
     .json({ msg: "Reserva no encontrada" });
-  }
+  };
 
   req.body.room      = parseInt(req.body.room);
   req.body.qttyGuest = parseInt(req.body.qttyGuest);
@@ -64,14 +64,14 @@ exports.updateBookingById = async (req, res) =>
   arrBooking[bookingIndex] = { ...arrBooking[bookingIndex], ...req.body };
 
   arrBooking.forEach ( booking => console.log (booking) );
-  console.log ('Total reservas -> ' + arrBooking.length);
+  console.log ("Total reservas -> " + arrBooking.length);
 
   return res.json({ msg: "Reserva modificada con éxito", data: arrBooking[bookingIndex] });
 };
 
-// CU -> Como viajero, tuve un cambio de planes y
-//       ya no necesito la habitación que reservé en el hotel Hotel Paraíso
-//       Mi número de reserva es 12345
+// CU04 -> Como viajero, tuve un cambio de planes y
+//         ya no necesito la habitación que reservé en el hotel Hotel Paraíso
+//         Mi número de reserva es 12345
 
 exports.deleteBookingById = async (req, res) =>
 {
@@ -83,34 +83,34 @@ exports.deleteBookingById = async (req, res) =>
     return res
     .status(404)
     .json({ msg: "Reserva no encontrada" });
-  }
+  };
 
   arrBooking.splice(bookingIndex, 1);
 
   arrBooking.forEach ( booking => console.log (booking) );
-  console.log ('Total reservas -> ' + arrBooking.length);
+  console.log ("Total reservas -> " + arrBooking.length);
 
   return res.json({ msg: "Reserva eliminada con éxito" });
 };
 
-// CU01 -> Como gerente del hotel, quiero ver una lista de todas las reservas para hoy
+// CU05 -> Como gerente del hotel, quiero ver una lista de todas las reservas para hoy
 //         para poder planificar el trabajo del personal de limpieza y recepción
 //
-// CU02 -> Como gerente de una cadena de hoteles
+// CU06 -> Como gerente de una cadena de hoteles
 //         quiero ver todas las reservas para el Hotel Paraíso
 //         para el próximo mes
 //
-// CU03 -> Como gerente del hotel, quiero ver todas las reservas para la semana de Navidad
+// CU07 -> Como gerente del hotel, quiero ver todas las reservas para la semana de Navidad
 //         para poder planificar el personal y las actividades necesarias
 //
-// CU04 -> Como gerente del hotel, quiero ver todas las reservas para nuestras suites de lujo
+// CU08 -> Como gerente del hotel, quiero ver todas las reservas para nuestras suites de lujo
 //         para el próximo mes para asegurarme de que todo esté en perfectas condiciones
 //         para nuestros huéspedes VIP
 //
-// CU05 -> Como gerente del hotel, quiero ver todas las reservas que están pendientes de pago
+// CU09 -> Como gerente del hotel, quiero ver todas las reservas que están pendientes de pago
 //         para poder hacer un seguimiento con los clientes
 //
-// CU06 -> Como gerente del hotel, quiero ver todas las reservas para grupos de más de 5
+// CU10 -> Como gerente del hotel, quiero ver todas las reservas para grupos de más de 5
 //         personas para el próximo mes, para poder planificar las necesidades adicionales
 //         de estos grupos grandes
 
@@ -118,7 +118,15 @@ exports.getBookingsBySome = async (req, res) =>
 {
     const { fecha, hotel, fecha_inicio, fecha_fin, tipo_habitacion, estado, num_huespedes } = req.query;
   
-    if (fecha) // se puede consultar cualquier fecha y no tan solo hoy
+    let   month    = moment().add(1, "months").format("MM");
+    let   year     = moment().add(1, "months").format("YYYY");
+    const dateFrom = `${year}-${month}-01`;
+    const dateTo   = `${year}-${month}-31`;
+
+    console.log (dateFrom);
+    console.log (dateTo);
+
+    if (fecha) // se puede consultar cualquier fecha y no tan solo la fecha de hoy
     {
       const bookingFiltered = arrBooking.filter(booking => booking.checkIn === fecha);
   
@@ -127,7 +135,7 @@ exports.getBookingsBySome = async (req, res) =>
           return res
           .status(404)
           .json({ msg: "No se encontraron reservas para la fecha de llegada" });
-      }
+      };
   
       return res.json({ msg: "Reservas encontradas para la fecha de llegada", data: bookingFiltered });
   
@@ -141,29 +149,23 @@ exports.getBookingsBySome = async (req, res) =>
                 return res
                 .status(404)
                 .json({ msg: "No se encontraron reservas para el hotel" });
-             }
-  
-             let month = moment().add(1, "months").format("MM");
-             let year = moment().add(1, "months").format("YYYY");
-  
-             const dateFrom = `${year}-${month}-01`;
-             const dateTo = `${year}-${month}-31`;
-  
-             const bookingFilteredByDateRange = bookingFiltered.filter(booking => moment(booking.checkIn).isBetween(dateFrom, dateTo, 'days', '[]'));
+             };
+
+             const bookingFilteredByDateRange = bookingFiltered.filter(booking => moment(booking.checkIn).isBetween(dateFrom, dateTo, "days", "[]"));
   
              if (bookingFilteredByDateRange.length === 0)
              {
                 return res
                 .status(404)
                 .json({ msg: "No se encontraron reservas para el hotel con llegada el mes próximo" });
-             }
+             };
   
              return res.json({ msg: "Reservas encontradas para el hotel con llegada el mes próximo", data: bookingFilteredByDateRange });
   
           } else
-                if (fecha_inicio && fecha_fin) // se puede consultar un rango de fechas y no tan solo la semana de navidada
+                if (fecha_inicio && fecha_fin) // se puede consultar un rango de fechas y no tan solo la semana de Navidad
                 {
-                   const bookingFiltered = booking.filter(booking => moment(booking.checkIn).isBetween(fecha_inicio, fecha_fin));
+                   const bookingFiltered = booking.filter(booking => moment(booking.checkIn).isBetween(fecha_inicio, fecha_fin, "days", "[]"));
   
                    if (bookingFiltered.length === 0)
                    {
@@ -175,7 +177,7 @@ exports.getBookingsBySome = async (req, res) =>
                    return res.json({ msg: "Reservas encontradas para llegada en el rango de fechas", data: bookingFiltered });
   
                 } else
-                      if (tipo_habitacion) // se puede consultar cualquier tipo de habitacion y no tan solo VIP
+                      if (tipo_habitacion) // se puede consultar cualquier tipo de habitacion y no tan solo habitacion categoria VIP
                       {
                          const bookingFiltered = arrBooking.filter(booking => booking.category === tipo_habitacion);
           
@@ -184,24 +186,16 @@ exports.getBookingsBySome = async (req, res) =>
                             return res
                             .status(404)
                             .json({ msg: "No se encontraron reservas para el tipo de habitación" });
-                         }
+                         };
           
-                         let month = moment().add(1, "months").format("MM");
-                         let year = moment().add(1, "months").format("YYYY");
-          
-                         const dateFrom = `${year}-${month}-01`;
-                         const dateTo = `${year}-${month}-31`;
-
-                         console.log (dateFrom, dateTo);
-          
-                         const bookingFilteredByDateRange = bookingFiltered.filter(booking => moment(booking.checkIn).isBetween(dateFrom, dateTo, 'days', '[]'));
+                         const bookingFilteredByDateRange = bookingFiltered.filter(booking => moment(booking.checkIn).isBetween(dateFrom, dateTo, "days", "[]"));
           
                          if (bookingFilteredByDateRange.length === 0)
                          {
                             return res
                             .status(404)
                             .json({ msg: "No se encontraron reservas para el tipo de habitacion con llegada el mes próximo" });
-                         }
+                         };
   
                          return res.json({ msg: "Reservas encontradas para el tipo de habitación con llegada el mes próximo", data: bookingFilteredByDateRange });
   
@@ -231,24 +225,18 @@ exports.getBookingsBySome = async (req, res) =>
                                           .json({ msg: "No se encontraron reservas por cantidad mayor o igual de huespedes" });
                                        }
                     
-                                       let month = moment().add(1, "months").format("MM");
-                                       let year = moment().add(1, "months").format("YYYY");
-                    
-                                       const dateFrom = `${year}-${month}-01`;
-                                       const dateTo = `${year}-${month}-31`;
-                    
-                                       const bookingFilteredByDateRange = bookingFiltered.filter(booking => moment(booking.checkIn).isBetween(dateFrom, dateTo, 'days', '[]'));
+                                       const bookingFilteredByDateRange = bookingFiltered.filter(booking => moment(booking.checkIn).isBetween(dateFrom, dateTo, "days", "[]"));
                     
                                        if (bookingFilteredByDateRange.length === 0)
                                        {
                                           return res
                                           .status(404)
                                           .json({ msg: "No se encontraron reservas por cantidad mayor o igual de huespedes para el mes próximo" });
-                                       }
+                                       };
               
                                        return res.json({ msg: "Reservas encontradas por cantidad mayor o igual de huespedes para el mes próximo", data: bookingFilteredByDateRange });
             
                                   };
   
                                   return res.json({ msg: "Listado de reservas existentes (sin poner un filtro)", data: arrBooking });
-}
+};
