@@ -1,12 +1,12 @@
 //JSON para usar en Thunder Client
 //
 //{ 
-//    "hotel": "Dreams",
+//    "hotel": "Monticello Rancagua",
 //    "room": 701,
 //    "category": "VIP",
 //    "name": "Juan Perez Gonzalez",
 //    "phone": "+56990022000",
-//    "numberOfPassengers": 2,
+//    "numberOfGuest": 2,
 //    "checkIn":  "20241220",
 //    "checkOut": "20241231",
 //    "paid": "Pending"
@@ -23,15 +23,16 @@ let arrBooking = [];
 
 exports.createBooking = async (req, res) =>
 {
-  const {hotel, room, category, name, phone, numberOfPassengers, checkIn, checkOut, paid } = req.body;
+  const {hotel, room, category, name, phone, numberOfGuest, checkIn, checkOut, paid } = req.body;
 
-  const newBooking = new Booking(uuidv4(), moment().format("YYYYMMDDHHMM"), hotel, parseInt(room), category, name, phone, parseInt(numberOfPassengers), checkIn, checkOut, paid);
+  const newBooking = new Booking(uuidv4(), moment().format("YYYYMMDDHHMM"), hotel, parseInt(room), category, name, phone, parseInt(numberOfGuest), checkIn, checkOut, paid);
 
   arrBooking.push(newBooking);
 
   res.json({ msg: "Reserva creada con éxito", data: newBooking });
 
   console.log ('Total de reservas -> ' + arrBooking.length);
+  console.log ('Reservas -> ' + arrBooking);
 };
 
 // CU -> Como recepcionista, necesito verificar los detalles de la reserva del huésped
@@ -48,6 +49,9 @@ exports.getBookingByReservation = async (req, res) =>
     .status(404)
     .json({ msg: "Reserva no encontrada" });
   }
+
+  console.log ('Total de reservas -> ' + arrBooking.length);
+  console.log ('Reservas -> ' + arrBooking);
 
   return res.json({ msg: "Reserva encontrada con éxito", data: booking });
 };
@@ -68,10 +72,13 @@ exports.updateBookingByReservation = async (req, res) =>
     .json({ msg: "Reserva no encontrada" });
   }
 
-  req.body.room               = parseInt(req.body.room);
-  req.body.numberOfPassengers = parseInt(req.body.numberOfPassengers)
+  req.body.room          = parseInt(req.body.room);
+  req.body.numberOfGuest = parseInt(req.body.numberOfGuest);
 
   arrBooking[bookingIndex] = { ...arrBooking[bookingIndex], ...req.body };
+
+  console.log ('Total de reservas -> ' + arrBooking.length);
+  console.log ('Reservas -> ' + arrBooking);
 
   return res.json({ msg: "Reserva modificada con éxito", data: arrBooking[bookingIndex] });
 };
@@ -95,6 +102,7 @@ exports.deleteBookingByReservation = async (req, res) =>
   arrBooking.splice(bookingIndex, 1);
 
   console.log ('Total de reservas -> ' + arrBooking.length);
+  console.log ('Reservas -> ' + arrBooking);
 
   return res.json({ msg: "Reserva eliminada con éxito" });
 };
@@ -135,8 +143,6 @@ exports.getBookingsBySome = async (req, res) =>
           .json({ msg: "No se encontraron reservas para la fecha de llegada" });
       }
   
-      console.log ('Total de reservas seleccionadas -> ' + bookingFiltered.length);
-  
       return res.json({ msg: "Reservas encontradas para la fecha de llegada", data: bookingFiltered });
   
     } else
@@ -166,8 +172,6 @@ exports.getBookingsBySome = async (req, res) =>
                 .json({ msg: "No se encontraron reservas para el hotel con llegada el mes próximo" });
              }
   
-             console.log ('Total de reservas seleccionadas -> ' + bookingFilteredByDateRange.length);
-  
              return res.json({ msg: "Reservas encontradas para el hotel con llegada el mes próximo", data: bookingFilteredByDateRange });
   
           } else
@@ -181,8 +185,6 @@ exports.getBookingsBySome = async (req, res) =>
                       .status(404)
                       .json({ msg: "No se encontraron reservas para llegada en el rango de fechas" });
                    }
-  
-                   console.log ('Total de reservas seleccionadas -> ' + bookingFiltered.length);
   
                    return res.json({ msg: "Reservas encontradas para llegada en el rango de fechas", data: bookingFiltered });
   
@@ -213,8 +215,6 @@ exports.getBookingsBySome = async (req, res) =>
                             .json({ msg: "No se encontraron reservas para el tipo de habitacion con llegada el mes próximo" });
                          }
   
-                         console.log ('Total de reservas seleccionadas -> ' + bookingFilteredByDateRange.length);
-  
                          return res.json({ msg: "Reservas encontradas para el tipo de habitación con llegada el mes próximo", data: bookingFilteredByDateRange });
   
                         } else
@@ -229,14 +229,12 @@ exports.getBookingsBySome = async (req, res) =>
                                     .json({ msg: "No se encontraron reservas para el estado solicitado" });
                                  }
   
-                                 console.log ('Total de reservas seleccionadas -> ' + bookingFiltered.length);
-  
                                  return res.json({ msg: "Reservas encontradas para el estado solicitado", data: bookingFiltered });
   
                               } else
                                     if (num_huespedes) 
                                     {
-                                       const bookingFiltered = arrBooking.filter(booking => booking.numberOfPassengers >= num_huespedes);
+                                       const bookingFiltered = arrBooking.filter(booking => booking.numberOfGuest >= num_huespedes);
                     
                                        if (bookingFiltered.length === 0)
                                        {
@@ -260,13 +258,9 @@ exports.getBookingsBySome = async (req, res) =>
                                           .json({ msg: "No se encontraron reservas por cantidad mayor o igual de huespedes para el mes próximo" });
                                        }
               
-                                       console.log ('Total de reservas seleccionadas -> ' + bookingFilteredByDateRange.length);
-  
                                        return res.json({ msg: "Reservas encontradas por cantidad mayor o igual de huespedes para el mes próximo", data: bookingFilteredByDateRange });
             
                                   };
-  
-                                  console.log ('Total de reservas -> ' + arrBooking.length);
   
                                   return res.json({ msg: "Listado de reservas existentes (sin poner un filtro)", data: arrBooking });
 }
