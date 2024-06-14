@@ -16,9 +16,6 @@ exports.createBooking = async (req, res) =>
   arrBooking.push(newBooking);
 
   res.json({ msg: "Reserva creada con éxito", data: newBooking });
-
-  arrBooking.forEach ( booking => console.log (booking) );
-  console.log ("Total reservas -> " + arrBooking.length);
 };
 
 // CU02 -> Como recepcionista, necesito verificar los detalles de la reserva del huésped
@@ -35,9 +32,6 @@ exports.getBookingById = async (req, res) =>
     .status(404)
     .json({ msg: "Reserva no encontrada" });
   };
-
-  arrBooking.forEach ( booking => console.log (booking) );
-  console.log ("Total reservas -> " + arrBooking.length);
 
   return res.json({ msg: "Reserva encontrada con éxito", data: booking });
 };
@@ -63,9 +57,6 @@ exports.updateBookingById = async (req, res) =>
 
   arrBooking[bookingIndex] = { ...arrBooking[bookingIndex], ...req.body };
 
-  arrBooking.forEach ( booking => console.log (booking) );
-  console.log ("Total reservas -> " + arrBooking.length);
-
   return res.json({ msg: "Reserva modificada con éxito", data: arrBooking[bookingIndex] });
 };
 
@@ -86,9 +77,6 @@ exports.deleteBookingById = async (req, res) =>
   };
 
   arrBooking.splice(bookingIndex, 1);
-
-  arrBooking.forEach ( booking => console.log (booking) );
-  console.log ("Total reservas -> " + arrBooking.length);
 
   return res.json({ msg: "Reserva eliminada con éxito" });
 };
@@ -122,9 +110,6 @@ exports.getBookingsBySome = async (req, res) =>
     let   year     = moment().add(1, "months").format("YYYY");
     const dateFrom = `${year}-${month}-01`;
     const dateTo   = `${year}-${month}-31`;
-
-    console.log (dateFrom);
-    console.log (dateTo);
 
     if (fecha) // se puede consultar cualquier fecha y no tan solo la fecha de hoy
     {
