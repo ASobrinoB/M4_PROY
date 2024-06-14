@@ -167,21 +167,21 @@ Usa esta lista para saber los requisitos mínimos del proyecto:
 
 - (E) Algunos comentarios en la logica de las APIs
 
-Para calcular el mes próximo
+`Para calcular el mes próximo`
 
 let   month    = moment().add(1, "months").format("MM");
 
 let   year     = moment().add(1, "months").format("YYYY");
 
-const dateFrom = `${year}-${month}-01`;
+const dateFrom = ${year}-${month}-01;
 
-const dateTo   = `${year}-${month}-31`;
-
-
-La sentencia a continuacion incluye `[dateFrom, dateTo]`
+const dateTo   = ${year}-${month}-31;
 
 
-`moment(booking.checkIn).isBetween(dateFrom, dateTo`, "days", "[]"`)`
+La sentencia a continuacion incluye intervalos `[dateFrom, dateTo]`
+
+
+moment(booking.checkIn).isBetween(dateFrom, dateTo`, "days", "[]"`)
 
 
 
@@ -199,14 +199,13 @@ La sentencia a continuacion incluye `[dateFrom, dateTo]`
 
 const { v4: uuidv4 } = require("uuid");
 
-
 let id = uuidv4()
 
 ****
 
 ## 5. Para testear en Thunder Client
 
-## `Body`
+`Body`
 
 { 
     "hotel": "Enjoy Santiago",
@@ -224,7 +223,7 @@ let id = uuidv4()
 
 
 
-## `Respuesta exitosa para la creación de una reserva`
+`Respuesta exitosa para la creación de una reserva`
 
 {
   "msg": "Reserva creada con éxito",
