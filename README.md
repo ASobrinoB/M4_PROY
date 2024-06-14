@@ -116,15 +116,15 @@ Usa esta lista para saber los requisitos mínimos del proyecto:
 
 (A) Como componentes del proyecto, deberá incluir el archivo `.env` que contiene la siguente informacion
 
-# `PORT=3001`
+### `PORT=3001`
 
 
 
 (B) Como componentes del proyecto, deberá incluir el archivo `.gitignore` que contiene la siguiente informacion
 
-# `.env`
-# `#npm install`
-# `node_modules`
+### `.env`
+### `#npm install`
+### `node_modules`
 
 
 
@@ -162,16 +162,16 @@ Usa esta lista para saber los requisitos mínimos del proyecto:
 
 (E) Algunos comentarios en la logica de las APIs
 
-# Para calcular el mes próximo
+### Para calcular el mes próximo
 
-#    let   month    = moment().add(1, "months").format("MM");
-#    let   year     = moment().add(1, "months").format("YYYY");
-#    const dateFrom = `${year}-${month}-01`;
-#    const dateTo   = `${year}-${month}-31`;
+###    let   month    = moment().add(1, "months").format("MM");
+###    let   year     = moment().add(1, "months").format("YYYY");
+###    const dateFrom = `${year}-${month}-01`;
+###    const dateTo   = `${year}-${month}-31`;
 
-# La sentencia a continuacion incluye para el dato `checkIn` (fecha de llegada del pasajero) el rango [dateFrom, dateTo]
+### La sentencia a continuacion incluye para el dato `checkIn` (fecha de llegada del pasajero) el rango [dateFrom, dateTo]
 
-# `moment(booking.checkIn).isBetween(dateFrom, dateTo, "days", "[]")`
+### `moment(booking.checkIn).isBetween(dateFrom, dateTo, "days", "[]")`
 
 
 
@@ -183,15 +183,15 @@ Usa esta lista para saber los requisitos mínimos del proyecto:
 
 (F-2) En `controller.js`
 
-# const { v4: uuidv4 } = require("uuid");
+### const { v4: uuidv4 } = require("uuid");
 
-# let id = uuidv4()
+### let id = uuidv4()
 
 ****
 
 ## 5. Para testear en Thunder Client
 
-# `Body`
+## `Body`
 
 { 
     "hotel": "Enjoy Santiago",
@@ -207,7 +207,7 @@ Usa esta lista para saber los requisitos mínimos del proyecto:
     "paid": "Pending"
 }
 
-# `Respuesta exitosa`
+## `Respuesta exitosa para la creación de una reserva`
 
 {
   "msg": "Reserva creada con éxito",
