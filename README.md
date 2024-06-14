@@ -207,6 +207,8 @@ arrCapacity.push (new Capacity ("Monticello Rancagua", 1203, "VIP",      400, 8,
 
 d.- Se agregan variables y configuraciones para poder generar documentacion `Swagger OPENAPI`
 
+./images/swagger.png
+
 En `package.json`
 
 {
