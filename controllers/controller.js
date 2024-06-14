@@ -238,5 +238,5 @@ exports.getBookingsBySome = async (req, res) =>
             
                                   };
   
-                                  return res.json({ msg: "Listado de reservas existentes (sin poner un filtro)", data: arrBooking });
+   return res.json({ msg: "Listado de reservas existentes (sin poner un filtro)", data: arrBooking });
 };

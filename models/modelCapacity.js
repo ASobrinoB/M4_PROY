@@ -4,11 +4,11 @@ class Capacity
     {
         this.hotel = hotel;
         this.room = room;
-        this.category = category;    // Standard, Gold, Platinum, VIP
-        this.price = price;          // precio diario USD
-        this.adults = adults;        // cantidad de adultos
-        this.children = children;    // cantidad de niños
-        this.roomState = roomState;  // Blocked (habitación en reparacion o remodelación), Available (habitación disponible), Busy (habitación ocupada)
+        this.category = category;
+        this.price = price;
+        this.adults = adults;
+        this.children = children;
+        this.roomState = roomState;
     };
 };
 

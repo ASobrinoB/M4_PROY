@@ -20,8 +20,11 @@ const swaggerSpec = {
             },
         ],
     },
-    apis: [`${path.join("", "./routes/userRoutes")}`],
+//  apis: [`${path.join("", "./routes/userRoutes.js")}`],
+    apis: [`${path.join("", "/users/alejandrosobrino/onedrive/udd/m4_proy/routes/userRoutes.js")}`],
 };
+
+console.log (swaggerSpec);
 
 // settings
 const app = express();
@@ -112,8 +115,8 @@ arrCapacity.push (new Capacity ("Monticello Rancagua", 1201, "VIP",      400, 8,
 arrCapacity.push (new Capacity ("Monticello Rancagua", 1202, "VIP",      400, 8, 3, "Available"));
 arrCapacity.push (new Capacity ("Monticello Rancagua", 1203, "VIP",      400, 8, 3, "Available"));
 
-arrCapacity.forEach ( capacity => console.log (capacity) );
-console.log ("Total de habitaciones disponibles -> " + arrCapacity.length);
+//arrCapacity.forEach ( capacity => console.log (capacity) );
+//console.log ("Total de habitaciones disponibles -> " + arrCapacity.length);
 
 module.exports = arrCapacity;
 

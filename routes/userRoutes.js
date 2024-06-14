@@ -9,6 +9,12 @@ const router = express.Router();
  *      Booking:
  *          type: object
  *          properties:
+ *              id:
+ *                  type: string
+ *                  description: numero de la reserva
+ *              timeStamp:
+ *                  type: date-time 
+ *                  description: fecha de creacion
  *              hotel:
  *                  type: string
  *                  description: nombre del hotel
@@ -55,22 +61,133 @@ const router = express.Router();
  *              - checkOut
  *              - paid
  *          example:
- *              hotel: Enjoy Santiago
+ *              hotel: "Enjoy Santiago"
  *              room: 702
- *              category: VIP
- *              name: Juan Perez Gonzalez
- *              phone: +56990022000
- *              email: telemensajes@hotmail.com
+ *              category: "VIP"
+ *              name: "Juan Perez Gonzalez"
+ *              phone: "+56990022000"
+ *              email: "telemensajes@hotmail.com"
  *              qttyGuest: 3
- *              specialFood: Kosher
- *              checkIn: 2024-12-20
- *              checkOut: 2024-12-31
- *              paid: Cash
+ *              specialFood: "Kosher"
+ *              checkIn: "2024-12-20"
+ *              checkOut: "2024-12-31"
+ *              paid: "Cash"
  */
-router.post   ("/reservas", usuarioController.createBooking);
-router.get    ("/reservas", usuarioController.getBookingsBySome);
-router.get    ("/reservas/:id", usuarioController.getBookingById);
-router.put    ("/reservas/:id", usuarioController.updateBookingById);
+// create a booking
+/**
+ * @swagger
+ * /api/reservas:
+ *  post:
+ *      summary: create a booking
+ *      tags: [Booking]
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              aplication/json:
+ *                  schema:
+ *                      type: object
+ *                      $ref: '#/components/schemas/Booking'
+ *      responses:
+ *          200:
+ *              description: Reserva creada con exito
+ */
+router.post ("/reservas", usuarioController.createBooking);
+
+// get all booking by criteria
+/**
+ * @swagger
+ * /api/reservas:
+ *  get:
+ *      summary: get all booking by criteria
+ *      tags: [Booking]
+ *      responses:
+ *          200:
+ *              description: Reservas encontradas
+ *              content:
+ *                  aplication/json:
+ *                      schema:
+ *                          type: array
+ *                          items:
+ *                              $ref: '#/components/schemas/Booking'
+ */
+router.get ("/reservas", usuarioController.getBookingsBySome);
+
+// get a booking by id
+/**
+ * @swagger
+ * /api/reservas/{id}:
+ *  get:
+ *      summary: get a booking by id
+ *      tags: [Booking]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            schema:
+ *              type: string
+ *            required: true
+ *            description: the booking id
+ *      responses:
+ *          200:
+ *              description: Reserva encontrada con exito
+ *              content:
+ *                  aplication/json:
+ *                      schema:
+ *                          type: object
+ *                          $ref: '#/components/schemas/Booking'
+ *          404:
+ *              description: Reserva no encontrada
+ */
+router.get ("/reservas/:id", usuarioController.getBookingById);
+
+// update a booking by id
+/**
+ * @swagger
+ * /api/reservas/{id}:
+ *  put:
+ *      summary: update a booking by id
+ *      tags: [Booking]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            schema:
+ *              type: string
+ *            required: true
+ *            description: the booking id
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              aplication/json:
+ *                  schema:
+ *                      type: object
+ *                      $ref: '#/components/schemas/Booking'
+ *      responses:
+ *          200:
+ *              description: Reserva modificada con exito
+ *          404:
+ *              description: Reserva no encontrada
+ */
+router.put ("/reservas/:id", usuarioController.updateBookingById);
+
+// delete a booking by id
+/**
+ * @swagger
+ * /api/reservas/{id}:
+ *  delete:
+ *      summary: delete a booking by id
+ *      tags: [Booking]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            schema:
+ *              type: string
+ *            required: true
+ *            description: the booking id
+ *      responses:
+ *          200:
+ *              description: Reserva eliminada con exito
+ *          404:
+ *              description: Reserva no encontrada
+ */
 router.delete ("/reservas/:id", usuarioController.deleteBookingById);
 
 module.exports = router;
