@@ -61,7 +61,6 @@ EJEMPLO_TU_PROYECTO
 - Opcionalmente, documentar todos tus `endpoints` utilizando `Swagger` y `OpenAPI` (observa la demo para ver su implementación).
 - Opcionalmente, configurar el proyecto para el despliegue en [render.com](https://render.com).
 
-
 ****
 
 ## 2. Objetivos de aprendizaje
@@ -77,6 +76,7 @@ EJEMPLO_TU_PROYECTO
 ## 3. Requisitos y entregables
 
 Usa esta lista para saber los requisitos mínimos del proyecto:
+
 ### GENERAL
 - [ ] Realizarse de manera individual
 
@@ -94,91 +94,104 @@ Usa esta lista para saber los requisitos mínimos del proyecto:
 - [ ] Permitir la búsqueda de reservas por hotel, rango de fechas, tipo de habitación, estado y número de huéspedes.
 - [ ] Almacenar los datos de las reservas en una estructura de datos.
 
-
 ### CONTROL DE VERSIONES
+
 - [ ] Crear un repositorio en GitHub y subir el proyecto al mismo.
 
-
 ### ENTREGA A TIEMPO
-- [ ] Entregar a tiempo el proyecto.
 
+- [ ] Entregar a tiempo el proyecto.
 
 ### DOCUMENTACIÓN DE LA API (OPCIONAL)
 
 - [ ] Documentar todos los `endpoints` utilizando `Swagger` y `OpenAPI`
 
-
 ### DESPLIEGUE (OPCIONAL)
+
 - [ ] Crear una URL de producción para este proyecto, a través de [render.com](https://render.com)
 
 ****
 
 ## 4. Implementación
 
-a.- Como componentes del proyecto deberá incluirse el archivo `.env` donde se registra la siguente informacion
+(A) Como componentes del proyecto, deberá incluir el archivo `.env` que contiene la siguente informacion
 
-## `PORT=3001`
+# `PORT=3001`
 
-b.- Como componentes del proyecto deberá incluirse el archivo `.gitignore` donde se registra la siguente informacion
 
-## `.env`
 
-## `#npm install`
+(B) Como componentes del proyecto, deberá incluir el archivo `.gitignore` que contiene la siguiente informacion
 
-## `node_modules`
+# `.env`
+# `#npm install`
+# `node_modules`
 
-c.- Se incorpora en `index.js` un arreglo de objetos con la capacidad hotelera como referencia y sacar datos para generar reservas
+
+
+(C) Se incorpora en `index.js` un arreglo de objetos con la información de la capacidad hotelera y asi poder sacar datos para generar reservas
 
 ![Image](./images/capacidadhotelera.png) 
 
-d.- Se agregan variables y configuraciones para poder generar documentacion `Swagger OPEN API`
 
-En `package.json`
+
+(D) Se agregan variables y configuraciones para poder generar documentacion `Swagger OPEN API`
+
+(D-1) En `package.json`
 
 ![Image](./images/swagger.png) 
 
-En `index.js`
+
+
+(D-3) En `index.js`
 
 ![Image](./images/swaggerindexjs1.png) 
 
 ![Image](./images/swaggerindexjs2.png) 
 
-En `userRoutes.js`
 
-Se agregan comentarios con prefijo `@swagger`
+
+(D-4) En `userRoutes.js` se agregan comentarios con prefijo `@swagger`
+
+
+
+(D-5) Una muestra de la aplicacion `Swagger OPEN API` resultante
 
 ![Image](./images/aplicacionswagger.png) 
 
-e.- Algunos comentarios en la logica de las APIs
 
-Para calcular el mes próximo
 
-    let   month    = moment().add(1, "months").format("MM");
-    let   year     = moment().add(1, "months").format("YYYY");
-    const dateFrom = `${year}-${month}-01`;
-    const dateTo   = `${year}-${month}-31`;
+(E) Algunos comentarios en la logica de las APIs
 
-La sentencia a continuacion incluye para el dato `checkIn` (fecha de llegada del pasajero) el rango [dateFrom, dateTo]
+# Para calcular el mes próximo
 
-`moment(booking.checkIn).isBetween(dateFrom, dateTo, "days", "[]")`
+#    let   month    = moment().add(1, "months").format("MM");
+#    let   year     = moment().add(1, "months").format("YYYY");
+#    const dateFrom = `${year}-${month}-01`;
+#    const dateTo   = `${year}-${month}-31`;
 
-f.- Se agregan variables y configuraciones para obtener un id único de reserva `uuid`
+# La sentencia a continuacion incluye para el dato `checkIn` (fecha de llegada del pasajero) el rango [dateFrom, dateTo]
 
-En `package.json`
+# `moment(booking.checkIn).isBetween(dateFrom, dateTo, "days", "[]")`
+
+
+
+(F) Se agregan variables y configuraciones para obtener un id único de reserva `uuid`
+
+(F-1) En `package.json`
 
 ![Image](./images/uuid.png) 
 
-En `controller.js`
+(F-2) En `controller.js`
 
-const { v4: uuidv4 } = require("uuid");
+# const { v4: uuidv4 } = require("uuid");
 
-let id = uuidv4()
+# let id = uuidv4()
 
 ****
 
 ## 5. Para testear en Thunder Client
 
-`Body`
+# `Body`
 
 { 
     "hotel": "Enjoy Santiago",
@@ -194,7 +207,7 @@ let id = uuidv4()
     "paid": "Pending"
 }
 
-`Respuesta exitosa`
+# `Respuesta exitosa`
 
 {
   "msg": "Reserva creada con éxito",
