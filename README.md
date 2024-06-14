@@ -114,35 +114,39 @@ Usa esta lista para saber los requisitos mínimos del proyecto:
 
 ## 4. Implementación
 
-(A) Como componentes del proyecto, deberá incluir el archivo `.env` que contiene la siguente informacion
+- (A) Como componentes del proyecto, deberá incluir el archivo `.env` que contiene la siguente informacion
 
 `PORT=3001`
 
 
 
-(B) Como componentes del proyecto, deberá incluir el archivo `.gitignore` que contiene la siguiente informacion
+- (B) Como componentes del proyecto, deberá incluir el archivo `.gitignore` que contiene la siguiente informacion
 
 `.env`
+
 `#npm install`
+
 `node_modules`
 
 
 
-(C) Se incorpora en `index.js` un arreglo de objetos con la información de la capacidad hotelera y asi poder sacar datos para generar reservas
+- (C) Se incorpora en `index.js` un arreglo de objetos con la información de la capacidad hotelera y asi poder sacar datos para generar reservas
 
 ![Image](./images/capacidadhotelera.png) 
 
 
 
-(D) Se agregan variables y configuraciones para poder generar documentacion `Swagger OPEN API`
+- (D) Se agregan variables y configuraciones para poder generar documentacion `Swagger OPEN API`
 
-(D-1) En `package.json`
+
+
+- (D-1) En `package.json`
 
 ![Image](./images/swagger.png) 
 
 
 
-(D-3) En `index.js`
+- (D-2) En `index.js`
 
 ![Image](./images/swaggerindexjs1.png) 
 
@@ -151,52 +155,58 @@ Usa esta lista para saber los requisitos mínimos del proyecto:
 
 
 
-(D-4) En `userRoutes.js` se agregan comentarios con prefijo `@swagger`
+- (D-3) En `userRoutes.js` se agregan comentarios con prefijo `@swagger`
 
 
 
-(D-5) Una muestra de la aplicacion `Swagger OPEN API` resultante
+- (D-4) Una muestra de la aplicacion `Swagger OPEN API` resultante
 
 ![Image](./images/aplicacionswagger.png) 
 
 
 
-(E) Algunos comentarios en la logica de las APIs
+- (E) Algunos comentarios en la logica de las APIs
 
 Para calcular el mes próximo
 
 let   month    = moment().add(1, "months").format("MM");
+
 let   year     = moment().add(1, "months").format("YYYY");
+
 const dateFrom = `${year}-${month}-01`;
+
 const dateTo   = `${year}-${month}-31`;
 
+
 La sentencia a continuacion incluye `[dateFrom, dateTo]`
+
 
 `moment(booking.checkIn).isBetween(dateFrom, dateTo`, "days", "[]"`)`
 
 
 
-(F) Se agregan variables y configuraciones para obtener un id único de reserva `uuid`
+- (F) Se agregan variables y configuraciones para obtener un id único de reserva `uuid`
 
-(F-1) En `package.json`
+
+- (F-1) En `package.json`
 
 ![Image](./images/uuid.png) 
 
 
 
-(F-2) En `controller.js`
+- (F-2) En `controller.js`
+
 
 const { v4: uuidv4 } = require("uuid");
 
+
 let id = uuidv4()
-
-
 
 ****
 
 ## 5. Para testear en Thunder Client
 
-`Body`
+## `Body`
 
 { 
     "hotel": "Enjoy Santiago",
@@ -214,7 +224,7 @@ let id = uuidv4()
 
 
 
-`Respuesta exitosa para la creación de una reserva`
+## `Respuesta exitosa para la creación de una reserva`
 
 {
   "msg": "Reserva creada con éxito",
