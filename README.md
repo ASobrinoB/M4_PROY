@@ -129,7 +129,7 @@ b.- Como componentes del proyecto deberá incluirse el archivo `.gitignore` dond
 
 c.- Se incorpora en `index.js` un arreglo de objetos con la capacidad hotelera como referencia y sacar datos para generar reservas
 
-![Image](./images/capacidad hotelera.png) 
+![Image](./images/capacidadhotelera.png) 
 
 d.- Se agregan variables y configuraciones para poder generar documentacion `Swagger OPEN API`
 
@@ -146,6 +146,8 @@ En `index.js`
 En `userRoutes.js`
 
 Se agregan comentarios con prefijo `@swagger`
+
+![Image](./images/aplicacionswagger.png) 
 
 e.- Algunos comentarios en la logica de las APIs
 
