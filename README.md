@@ -111,353 +111,41 @@ Usa esta lista para saber los requisitos mínimos del proyecto:
 ### DESPLIEGUE (OPCIONAL)
 - [ ] Crear una URL de producción para este proyecto, a través de [render.com](https://render.com)
 
-
-
 ****
 
 ## 4. Implementación
 
 a.- Como componentes del proyecto deberá incluirse el archivo `.env` donde se registra la siguente informacion
 
-PORT=3001
+## `PORT=3001`
 
 b.- Como componentes del proyecto deberá incluirse el archivo `.gitignore` donde se registra la siguente informacion
 
-.env
-#npm install
-node_modules
+## `.env`
+
+## `#npm install`
+
+## `node_modules`
 
 c.- Se incorpora en `index.js` un arreglo de objetos con la capacidad hotelera como referencia y sacar datos para generar reservas
 
-const arrCapacity = [];
-const Capacity = require("./models/modelCapacity");
+![Image](./images/capacidad hotelera.png) 
 
-arrCapacity.push (new Capacity ("Enjoy Santiago",       101, "Standard",  80, 2, 1, "Available"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       102, "Gold",     140, 4, 2, "Available"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       103, "Platinum", 200, 6, 3, "Available"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       104, "Standard",  80, 2, 1, "Available"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       105, "Gold",     140, 4, 2, "Available"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       201, "Standard",  80, 2, 1, "Bloqued"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       202, "Gold",     140, 4, 2, "Bloqued"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       203, "Platinum", 200, 6, 3, "Bloqued"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       204, "Standard",  80, 2, 1, "Bloqued"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       205, "Gold",     140, 4, 2, "Bloqued"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       301, "Standard",  80, 2, 1, "Available"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       302, "Gold",     140, 4, 2, "Available"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       303, "Platinum", 200, 6, 3, "Available"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       304, "Standard",  80, 2, 1, "Available"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       305, "Gold",     140, 4, 2, "Available"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       401, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       402, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       403, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       501, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       502, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       503, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       601, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       602, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Enjoy Santiago",       603, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  101, "Standard",  80, 2, 1, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  102, "Gold",     140, 4, 2, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  103, "Platinum", 200, 6, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  104, "Standard",  80, 2, 1, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  105, "Gold",     140, 4, 2, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  201, "Standard",  80, 2, 1, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  202, "Gold",     140, 4, 2, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  203, "Platinum", 200, 6, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  204, "Standard",  80, 2, 1, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  205, "Gold",     140, 4, 2, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  301, "Standard",  80, 2, 1, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  302, "Gold",     140, 4, 2, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  303, "Platinum", 200, 6, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  304, "Standard",  80, 2, 1, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  305, "Gold",     140, 4, 2, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  401, "Standard",  80, 2, 1, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  402, "Gold",     140, 4, 2, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  403, "Platinum", 200, 6, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  404, "Standard",  80, 2, 1, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  405, "Gold",     140, 4, 2, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  501, "Standard",  80, 2, 1, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  502, "Gold",     140, 4, 2, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  503, "Platinum", 200, 6, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  504, "Standard",  80, 2, 1, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  505, "Gold",     140, 4, 2, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  601, "Standard",  80, 2, 1, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  602, "Gold",     140, 4, 2, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  603, "Platinum", 200, 6, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  604, "Standard",  80, 2, 1, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  605, "Gold",     140, 4, 2, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  701, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  702, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  703, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  801, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  802, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  803, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  901, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  902, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua",  903, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua", 1001, "VIP",      400, 8, 3, "Bloqued"));
-arrCapacity.push (new Capacity ("Monticello Rancagua", 1002, "VIP",      400, 8, 3, "Bloqued"));
-arrCapacity.push (new Capacity ("Monticello Rancagua", 1003, "VIP",      400, 8, 3, "Bloqued"));
-arrCapacity.push (new Capacity ("Monticello Rancagua", 1101, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua", 1102, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua", 1103, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua", 1201, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua", 1202, "VIP",      400, 8, 3, "Available"));
-arrCapacity.push (new Capacity ("Monticello Rancagua", 1203, "VIP",      400, 8, 3, "Available"));
-
-d.- Se agregan variables y configuraciones para poder generar documentacion `Swagger OPENAPI`
-
-./images/swagger.png
+d.- Se agregan variables y configuraciones para poder generar documentacion `Swagger OPEN API`
 
 En `package.json`
 
-{
-  "name": "m4_proy",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^3.1.1"
-  },
-  "dependencies": {
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "moment": "^2.30.1",
-    "uuid": "^9.0.1",
-`    "swagger-jsdoc": "^6.2.8",`
-`    "swagger-ui-express": "^5.0.1"`
-  }
-}
+![Image](./images/swagger.png) 
 
 En `index.js`
 
-const path = require("path");
+![Image](./images/swaggerindexjs1.png) 
 
-const swaggerUI = require ("swagger-ui-express");
-const swaggerJsDoc = require ("swagger-jsdoc");
-
-const swaggerSpec = {
-    definition: {
-        openapi: "3.0.0",
-        info: {
-            title: "NodeJS API Booking",
-            version: "1.0.0",
-        }, 
-        servers: [
-            {
-                url: "http://localhost:3001",
-            },
-        ],
-    },
-//  apis: [`${path.join("", "./routes/userRoutes.js")}`],   <- Me falla
-`Es necesario indicar que en la linea anterior no me funcionaba swagger, tuve que poner el path completo de mi macbook`
-    apis: [`${path.join("", "/users/alejandrosobrino/onedrive/udd/m4_proy/routes/userRoutes.js")}`],   <- No me falla
-};
-
-app.use(
-    "/api-doc",
-    swaggerUI.serve,
-    swaggerUI.setup(swaggerJsDoc(swaggerSpec))
-);
+![Image](./images/swaggerindexjs2.png) 
 
 En `userRoutes.js`
 
-Se agregan comentarios que usa Swagger OPENAPI para contruir la documentación
-
-/**
- * @swagger
- * components:
- *  schemas:
- *      Booking:
- *          type: object
- *          properties:
- *              id:
- *                  type: string
- *                  description: numero de la reserva
- *              timeStamp:
- *                  type: date-time 
- *                  description: fecha de creacion
- *              hotel:
- *                  type: string
- *                  description: nombre del hotel
- *              room:
- *                  type: integer
- *                  description: numero de habitacion 
- *              category:
- *                  type: string
- *                  description: Standard Gold Platinum VIP
- *              name:
- *                  type: string
- *                  description: nombre del pasajero
- *              phone:
- *                  type: string
- *                  description: telefono del pasajero 
- *              email:
- *                  type: string
- *                  description: correo del pasajero 
- *              qttyGuest:
- *                  type: integer
- *                  description: cantidad de personas
- *              specialFood:
- *                  type: string
- *                  description: comida especial
- *              checkIn:
- *                  type: date-time
- *                  description: fecha de llegada en formato YYYY-MM-DD
- *              checkOut:
- *                  type: date-time
- *                  description: fecha de salida en formato YYYY-MM-DD
- *              paid:
- *                  type: string
- *                  description: Pending (no pagada), Credit-Card, Debit-Card, Cash, Electronic-Pay, Refund, Purchase-Order, Gift-Card, Other, Promotion
- *          required:
- *              - hotel
- *              - room
- *              - category
- *              - name
- *              - phone
- *              - email
- *              - qttyGuest
- *              - specialFood
- *              - checkIn
- *              - checkOut
- *              - paid
- *          example:
- *              hotel: "Enjoy Santiago"
- *              room: 702
- *              category: "VIP"
- *              name: "Juan Perez Gonzalez"
- *              phone: "+56990022000"
- *              email: "telemensajes@hotmail.com"
- *              qttyGuest: 3
- *              specialFood: "Kosher"
- *              checkIn: "2024-12-20"
- *              checkOut: "2024-12-31"
- *              paid: "Cash"
- */
-// create a booking
-/**
- * @swagger
- * /api/reservas:
- *  post:
- *      summary: create a booking
- *      tags: [Booking]
- *      requestBody:
- *          required: true
- *          content:
- *              aplication/json:
- *                  schema:
- *                      type: object
- *                      $ref: '#/components/schemas/Booking'
- *      responses:
- *          200:
- *              description: Reserva creada con exito
- */
-`router.post ("/reservas", usuarioController.createBooking);`
-
-// get all booking by criteria
-/**
- * @swagger
- * /api/reservas:
- *  get:
- *      summary: get all booking by criteria
- *      tags: [Booking]
- *      responses:
- *          200:
- *              description: Reservas encontradas
- *              content:
- *                  aplication/json:
- *                      schema:
- *                          type: array
- *                          items:
- *                              $ref: '#/components/schemas/Booking'
- */
-`router.get ("/reservas", usuarioController.getBookingsBySome);`
-
-// get a booking by id
-/**
- * @swagger
- * /api/reservas/{id}:
- *  get:
- *      summary: get a booking by id
- *      tags: [Booking]
- *      parameters:
- *          - in: path
- *            name: id
- *            schema:
- *              type: string
- *            required: true
- *            description: the booking id
- *      responses:
- *          200:
- *              description: Reserva encontrada con exito
- *              content:
- *                  aplication/json:
- *                      schema:
- *                          type: object
- *                          $ref: '#/components/schemas/Booking'
- *          404:
- *              description: Reserva no encontrada
- */
-`router.get ("/reservas/:id", usuarioController.getBookingById);`
-
-// update a booking by id
-/**
- * @swagger
- * /api/reservas/{id}:
- *  put:
- *      summary: update a booking by id
- *      tags: [Booking]
- *      parameters:
- *          - in: path
- *            name: id
- *            schema:
- *              type: string
- *            required: true
- *            description: the booking id
- *      requestBody:
- *          required: true
- *          content:
- *              aplication/json:
- *                  schema:
- *                      type: object
- *                      $ref: '#/components/schemas/Booking'
- *      responses:
- *          200:
- *              description: Reserva modificada con exito
- *          404:
- *              description: Reserva no encontrada
- */
-`router.put ("/reservas/:id", usuarioController.updateBookingById);`
-
-// delete a booking by id
-/**
- * @swagger
- * /api/reservas/{id}:
- *  delete:
- *      summary: delete a booking by id
- *      tags: [Booking]
- *      parameters:
- *          - in: path
- *            name: id
- *            schema:
- *              type: string
- *            required: true
- *            description: the booking id
- *      responses:
- *          200:
- *              description: Reserva eliminada con exito
- *          404:
- *              description: Reserva no encontrada
- */
-`router.delete ("/reservas/:id", usuarioController.deleteBookingById);`
+Se agregan comentarios con prefijo `@swagger`
 
 e.- Algunos comentarios en la logica de las APIs
 
@@ -476,30 +164,7 @@ f.- Se agregan variables y configuraciones para obtener un id único de reserva 
 
 En `package.json`
 
-{
-  "name": "m4_proy",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^3.1.1"
-  },
-  "dependencies": {
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "moment": "^2.30.1",
-`   "uuid": "^9.0.1",`
-    "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1"
-  }
-}
+![Image](./images/uuid.png) 
 
 En `controller.js`
 
