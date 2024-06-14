@@ -1,6 +1,6 @@
 ![Banner](./images/banner.png)
 
-# PROYECTO 4: Reservas Hoteleras
+# PROYECTO 4: Reservas Hoteleras (renderizado y documentado con Swagger OPEN API)
 
 ## **ÍNDICE**
 
@@ -116,8 +116,9 @@ Usa esta lista para saber los requisitos mínimos del proyecto:
 
 - (A) Como componentes del proyecto, deberá incluir el archivo `.env` que contiene la siguente informacion
 
-`PORT=3001`
+`PORT=10000`
 
+(El render me obliga a poner el puerto 10000)
 
 
 - (B) Como componentes del proyecto, deberá incluir el archivo `.gitignore` que contiene la siguiente informacion
